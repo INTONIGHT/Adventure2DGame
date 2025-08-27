@@ -12,6 +12,10 @@ public class Main {
 		window.setTitle("2D Adventure");
 		window.setLocationRelativeTo(null);
 		
+		GamePanel gamePanel = new GamePanel();
+		window.add(gamePanel);
+		
+		window.pack();
 		
 		window.setVisible(true);
 	}
