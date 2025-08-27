@@ -16,8 +16,9 @@ public class GamePanel extends JPanel implements Runnable{
 	final static int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; //768
 	final static int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;//576
 	
-	KeyHandler kh = new KeyHandler();
+	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	final static int FPS = 60;
 	
 	//set players default position
 	int playerX = 100;
@@ -28,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);//drawing done in an offscreen buffer
-		this.addKeyListener(kh);
+		this.addKeyListener(keyH);
 		this.setFocusable(true);
 		
 	}
@@ -38,20 +39,69 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread.start();
 	}
 	
+//	@Override
+//	public void run() {
+//		// TODO Auto-generated method stub
+//		double drawInterval = 1000000000 /FPS;
+//		double nextDrawTime = System.nanoTime() + drawInterval;
+//		while(gameThread != null) {
+//			//update 
+//			
+//			
+//			update();
+//			repaint();
+//			//draw screen
+//			//sleep method
+//			try {
+//				double remainingTime = nextDrawTime - System.nanoTime();
+//				remainingTime = remainingTime/1000000;//convert to milliseconds
+//				if( remainingTime < 0) {
+//					remainingTime = 0;
+//				}
+//				Thread.sleep((long) remainingTime);
+//				nextDrawTime += drawInterval;
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		double drawInterval = 1000000000 /FPS;
+		double delta = 0;
+		long lastTime = System.nanoTime();
+		long currentTime;
+		
 		while(gameThread != null) {
-			//update 
-			update();
-			repaint();
-			//draw screen
+			currentTime = System.nanoTime();
+			delta += (currentTime - lastTime) / drawInterval;
+			lastTime = currentTime;
+			
+			if(delta >= 1) {
+				update();
+				repaint();
+				delta --;
+			}
+			
 			
 		}
 	}
 	
 	public void update() {
-		
+		if(keyH.upPressed) {
+			playerY -= playerSpeed;
+		}
+		if(keyH.downPressed) {
+			playerY += playerSpeed;
+		}
+		if(keyH.leftPressed) {
+			playerX -= playerSpeed;
+		}
+		if(keyH.rightPressed) {
+			playerX += playerSpeed;
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
