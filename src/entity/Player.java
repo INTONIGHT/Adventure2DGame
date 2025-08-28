@@ -45,6 +45,20 @@ public class Player extends Entity{
 	}
 	
 	public void update() {
+		if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+			spriteCounter ++;
+			//gets called 60 times a second
+			//this rate will change the sprite every 10 frames
+			if(spriteCounter > 10) {//you can change this number if you feel it isnt smooth
+				if(spriteNum == 1) {
+					spriteNum = 2;
+				}
+				else if(spriteNum == 2) {
+					spriteNum =1;
+				}
+				spriteCounter  = 0;
+			}
+		}
 		if(keyH.upPressed) {
 			direction = "up";
 			y -= speed;
@@ -61,18 +75,7 @@ public class Player extends Entity{
 			direction = "right";
 			x += speed;
 		}
-		spriteCounter ++;
-		//gets called 60 times a second
-		//this rate will change the sprite every 10 frames
-		if(spriteCounter > 10) {
-			if(spriteNum == 1) {
-				spriteNum = 2;
-			}
-			else if(spriteNum == 2) {
-				spriteNum =1;
-			}
-			spriteCounter  = 0;
-		}
+		
 	}
 	public void draw(Graphics2D g2) {
 		//g2.setColor(Color.white);
