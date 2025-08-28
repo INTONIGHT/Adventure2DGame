@@ -13,11 +13,11 @@ import tile.TileManager;
 public class GamePanel extends JPanel implements Runnable{
 	final  int ORIGINAL_TILE_SIZE = 16;
 	final  int SCALE = 3;
-	final public  int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;//48
-	final public int MAX_SCREEN_COL = 16;
-	final public int MAX_SCREEN_ROW = 12;
-	final  int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; //768
-	final  int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;//576
+	public final  int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;//48
+	public final  int MAX_SCREEN_COL = 16;
+	public final  int MAX_SCREEN_ROW = 12;
+	public final  int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; //768
+	public final  int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;//576
 	
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
