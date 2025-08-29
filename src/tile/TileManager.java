@@ -62,25 +62,29 @@ public class TileManager {
 //		g2.drawImage(tile[1].image,48,0,gp.TILE_SIZE,gp.TILE_SIZE,null);
 //		g2.drawImage(tile[2].image,96,0,gp.TILE_SIZE,gp.TILE_SIZE,null);
 		
-		int col = 0;
-		int row = 0;
-		int x = 0;
-		int y = 0;
+		int worldCol = 0;
+		int worldRow = 0;
 		
-		while(col < gp.MAX_WORLD_COL && row < gp.MAX_WORLD_ROW) {
+		
+		while(worldCol < gp.MAX_WORLD_COL && worldRow < gp.MAX_WORLD_ROW) {
 			//can use tileMap[col][row] for the random
-			int tileNum = mapTileNum[col][row];
+			int tileNum = mapTileNum[worldCol][worldRow];
+			//check where the tiles world x is at
+			//world x is where its on the map screen x is where we need to draw it
+			int worldX = worldCol * gp.TILE_SIZE;
+			int worldY = worldRow * gp.TILE_SIZE;
+			int screenX = worldX - gp.player.worldX + gp.player.SCREEN_X;
+			int screenY = worldY - gp.player.worldY + gp.player.SCREEN_Y;
 			
-			g2.drawImage(tile[tileNum].image, x, y, gp.TILE_SIZE,gp.TILE_SIZE,null);
+			g2.drawImage(tile[tileNum].image, screenX, screenY, gp.TILE_SIZE,gp.TILE_SIZE,null);
 			//places grass tiles on whole screen
-			col++;
-			x += gp.TILE_SIZE;
+			worldCol++;
 			
-			if(col == gp.MAX_WORLD_COL) {
-				col = 0;
-				x = 0;
-				row++;
-				y += gp.TILE_SIZE;
+			
+			if(worldCol == gp.MAX_WORLD_COL) {
+				worldCol = 0;
+				worldRow++;
+				
 			}
 		}
 	}
