@@ -26,8 +26,8 @@ public class TileManager {
 		tileMap = new Integer[gp.MAX_SCREEN_COL][gp.MAX_SCREEN_ROW];//used this for the random
 		 generateTileMap();
 		 //map from text file
-		 mapTileNum =  new int[gp.MAX_SCREEN_COL][gp.MAX_SCREEN_ROW];
-		 loadMap();
+		 mapTileNum =  new int[gp.MAX_WORLD_COL][gp.MAX_WORLD_ROW];
+		 loadMap("/maps/world01.txt");
 		
 	}
 	
@@ -42,6 +42,14 @@ public class TileManager {
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water01.png"));
 			//can load more images when needed
+			tile[3] = new Tile();
+			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/earth.png"));
+			
+			tile[4] = new Tile();
+			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+			
+			tile[5] = new Tile();
+			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -59,7 +67,7 @@ public class TileManager {
 		int x = 0;
 		int y = 0;
 		
-		while(col < gp.MAX_SCREEN_COL && row < gp.MAX_SCREEN_ROW) {
+		while(col < gp.MAX_WORLD_COL && row < gp.MAX_WORLD_ROW) {
 			//can use tileMap[col][row] for the random
 			int tileNum = mapTileNum[col][row];
 			
@@ -68,7 +76,7 @@ public class TileManager {
 			col++;
 			x += gp.TILE_SIZE;
 			
-			if(col == gp.MAX_SCREEN_COL) {
+			if(col == gp.MAX_WORLD_COL) {
 				col = 0;
 				x = 0;
 				row++;
@@ -101,21 +109,21 @@ public class TileManager {
 	}
 	
 	//load a map from a text file
-	public void loadMap() {
+	public void loadMap(String filePath) {
 		try {
-			InputStream is = getClass().getResourceAsStream("/maps/map01.txt");
+			InputStream is = getClass().getResourceAsStream(filePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			int col = 0;
 			int row = 0;
-			while(col <gp.MAX_SCREEN_COL && row <gp.MAX_SCREEN_ROW) {
+			while(col <gp.MAX_WORLD_COL && row <gp.MAX_WORLD_ROW) {
 				String line  = br.readLine();
-				while(col < gp.MAX_SCREEN_COL) {
+				while(col < gp.MAX_WORLD_COL) {
 					String numbers[] = line.split(" ");//from the line splitting it into individual numbers putting into this array
 					int num = Integer.parseInt(numbers[col]);
 					mapTileNum[col][row] = num;
 					col++;
 				}
-				if(col == gp.MAX_SCREEN_COL) {
+				if(col == gp.MAX_WORLD_COL) {
 					col = 0;
 					row++;
 				}
