@@ -1,7 +1,10 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -12,14 +15,19 @@ public class TileManager {
 	GamePanel gp;
 	Tile[] tile;
 	Integer[][] tileMap;
+	int mapTileNum[][];
 	Random random = new Random();
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[25];
 		getTileImage();
-		tileMap = new Integer[gp.MAX_SCREEN_COL][gp.MAX_SCREEN_ROW];
+		//this is to generate a random tile map
+		tileMap = new Integer[gp.MAX_SCREEN_COL][gp.MAX_SCREEN_ROW];//used this for the random
 		 generateTileMap();
+		 //map from text file
+		 mapTileNum =  new int[gp.MAX_SCREEN_COL][gp.MAX_SCREEN_ROW];
+		 loadMap();
 		
 	}
 	
@@ -52,7 +60,8 @@ public class TileManager {
 		int y = 0;
 		
 		while(col < gp.MAX_SCREEN_COL && row < gp.MAX_SCREEN_ROW) {
-			int tileNum = tileMap[col][row];
+			//can use tileMap[col][row] for the random
+			int tileNum = mapTileNum[col][row];
 			
 			g2.drawImage(tile[tileNum].image, x, y, gp.TILE_SIZE,gp.TILE_SIZE,null);
 			//places grass tiles on whole screen
@@ -89,5 +98,32 @@ public class TileManager {
 		}
 		return tileMap;
 		
+	}
+	
+	//load a map from a text file
+	public void loadMap() {
+		try {
+			InputStream is = getClass().getResourceAsStream("/maps/map01.txt");
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			int col = 0;
+			int row = 0;
+			while(col <gp.MAX_SCREEN_COL && row <gp.MAX_SCREEN_ROW) {
+				String line  = br.readLine();
+				while(col < gp.MAX_SCREEN_COL) {
+					String numbers[] = line.split(" ");//from the line splitting it into individual numbers putting into this array
+					int num = Integer.parseInt(numbers[col]);
+					mapTileNum[col][row] = num;
+					col++;
+				}
+				if(col == gp.MAX_SCREEN_COL) {
+					col = 0;
+					row++;
+				}
+			}
+			br.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
