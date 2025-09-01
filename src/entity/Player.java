@@ -70,22 +70,42 @@ public class Player extends Entity{
 		}
 		if(keyH.upPressed) {
 			direction = "up";
-			worldY -= speed;
+			
 		}
 		if(keyH.downPressed) {
 			direction = "down";
-			worldY += speed;
+			
 		}
 		if(keyH.leftPressed) {
 			direction = "left";
-			worldX -= speed;
+			
 		}
 		if(keyH.rightPressed) {
 			direction = "right";
-			worldX += speed;
+			
 		}
+		//check the collision
 		collisionOn = false;
 		gp.collisionDetector.checkTile(this);
+		//if collision is false
+		if(!collisionOn) {
+			switch(direction) {
+			case "up":
+				worldY -= speed;
+				break;
+			case "down":
+				worldY += speed;
+				break;
+			case "left":
+				worldX -= speed;
+				break;
+			case "right":
+				worldX += speed;
+				break;
+				
+			}
+		}
+		
 		
 	}
 	public void draw(Graphics2D g2) {

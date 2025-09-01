@@ -13,9 +13,9 @@ import main.GamePanel;
 
 public class TileManager {
 	GamePanel gp;
-	Tile[] tile;
+	public Tile[] tile;
 	Integer[][] tileMap;
-	int mapTileNum[][];
+	public int mapTileNum[][];
 	Random random = new Random();
 	
 	public TileManager(GamePanel gp) {
