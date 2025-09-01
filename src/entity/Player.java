@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -22,6 +23,8 @@ public class Player extends Entity{
 		this.keyH = keyH;
 		SCREEN_X = gp.SCREEN_WIDTH / 2 - (gp.TILE_SIZE / 2);
 		SCREEN_Y = gp.SCREEN_HEIGHT / 2 - (gp.TILE_SIZE / 2);
+		//these values can work for the image to make it smaller for collisions
+		solidArea = new Rectangle(8,16,32,32);
 		setDefaultValues();
 		getPlayerImage();
 	}
@@ -81,6 +84,8 @@ public class Player extends Entity{
 			direction = "right";
 			worldX += speed;
 		}
+		collisionOn = false;
+		gp.collisionDetector.checkTile(this);
 		
 	}
 	public void draw(Graphics2D g2) {
