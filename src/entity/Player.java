@@ -25,6 +25,9 @@ public class Player extends Entity{
 		SCREEN_Y = gp.SCREEN_HEIGHT / 2 - (gp.TILE_SIZE / 2);
 		//these values can work for the image to make it smaller for collisions
 		solidArea = new Rectangle(8,16,32,32);
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+		
 		setDefaultValues();
 		getPlayerImage();
 	}
