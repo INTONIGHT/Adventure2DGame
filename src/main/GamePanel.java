@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -31,6 +32,10 @@ public class GamePanel extends JPanel implements Runnable{
 	TileManager tileM = new TileManager(this);
 	
 	public CollisionDetector collisionDetector  = new CollisionDetector(this);
+	public AssetLoader assetLoader = new AssetLoader(this);
+
+	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
+	public SuperObject obj[] = new SuperObject[10];
 	
 	
 	
@@ -41,6 +46,10 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 		
+	}
+	
+	public void setUpGame() {
+		assetLoader.setObject();
 	}
 	
 	public void startGameThread() {
