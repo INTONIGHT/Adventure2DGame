@@ -108,6 +108,8 @@ public class Player extends Entity{
 				
 			}
 		}
+		//check object collision
+		int objIndex = gp.collisionDetector.checkObject(this, true);
 		
 		
 	}
