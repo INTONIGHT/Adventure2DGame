@@ -16,6 +16,7 @@ public class Player extends Entity{
 	KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
+	int keysPossessed = 0;
 	//where we draw the player on screen
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -90,6 +91,10 @@ public class Player extends Entity{
 		//check the collision
 		collisionOn = false;
 		gp.collisionDetector.checkTile(this);
+		//check object collision
+		int objIndex = gp.collisionDetector.checkObject(this, true);
+		pickUpObject(objIndex);
+		
 		//if collision is false
 		if(!collisionOn) {
 			switch(direction) {
@@ -108,8 +113,7 @@ public class Player extends Entity{
 				
 			}
 		}
-		//check object collision
-		int objIndex = gp.collisionDetector.checkObject(this, true);
+		
 		
 		
 	}
@@ -155,6 +159,27 @@ public class Player extends Entity{
 		g2.drawImage(image, SCREEN_X, SCREEN_Y,gp.TILE_SIZE,gp.TILE_SIZE,null);
 		
 		
+	}
+	
+	public void pickUpObject(int index) {
+		if(index != -1) {
+			//gp.obj[index] = null;
+			//deletes the object we touch
+			String objectName = gp.obj[index].name;
+			
+			switch(objectName) {
+			case "Key":
+				keysPossessed ++;
+				gp.obj[index] = null;
+				break;
+			case "Door":
+				if(keysPossessed > 0) {
+					gp.obj[index] = null;
+					keysPossessed--;
+				}
+				break;
+			}
+		}
 	}
 	
 }
