@@ -169,17 +169,20 @@ public class Player extends Entity{
 			
 			switch(objectName) {
 			case "Key":
+				gp.playSoundEffect(1);
 				keysPossessed ++;
 				gp.obj[index] = null;
 				break;
 			case "Door":
 				if(keysPossessed > 0) {
 					gp.obj[index] = null;
+					gp.playSoundEffect(3);
 					keysPossessed--;
 				}
 				break;
 			case "Boots":
 				speed += 1;
+				gp.playSoundEffect(2);
 				gp.obj[index] = null;
 				break;
 			}

@@ -26,8 +26,11 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int WORLD_HEIGHT = TILE_SIZE * MAX_WORLD_ROW;
 	
 	KeyHandler keyH = new KeyHandler();
+	//sound
+	Sound sound = new Sound();
 	Thread gameThread;
 	final static int FPS = 60;
+	//entity and objects
 	public Player player = new Player(this,keyH);
 	TileManager tileM = new TileManager(this);
 	
@@ -50,6 +53,10 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void setUpGame() {
 		assetLoader.setObject();
+		//turning off the background music as it annoys me lol
+		//can uncomment if you want the music
+		//playMusic(0); //will play the background music 
+		
 	}
 	
 	public void startGameThread() {
@@ -143,6 +150,20 @@ public class GamePanel extends JPanel implements Runnable{
 		
 	}
 	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic() {
+		sound.stop();
+	}
+	
+	public void playSoundEffect(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
 	
 	
 }
