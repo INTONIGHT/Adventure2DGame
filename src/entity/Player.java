@@ -178,13 +178,22 @@ public class Player extends Entity{
 				if(keysPossessed > 0) {
 					gp.obj[index] = null;
 					gp.playSoundEffect(3);
+					gp.ui.showMessage("You opened the door!");
 					keysPossessed--;
+				}else {
+					gp.ui.showMessage("You need a key!");
 				}
 				break;
 			case "Boots":
 				speed += 1;
 				gp.playSoundEffect(2);
 				gp.obj[index] = null;
+				gp.ui.showMessage("Speed up!");
+				break;
+			case "Chest":
+				gp.ui.gameFinished = true;
+				
+				gp.playSoundEffect(4);
 				break;
 			}
 		}

@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//entity and objects
 	public Player player = new Player(this,keyH);
 	TileManager tileM = new TileManager(this);
+	public boolean gameRunning = true;
 	
 	public CollisionDetector collisionDetector  = new CollisionDetector(this);
 	public AssetLoader assetLoader = new AssetLoader(this);
@@ -65,7 +66,10 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-	
+	public void stopGame() {
+		this.stopMusic();
+		gameRunning = false;
+	}
 //	@Override
 //	public void run() {
 //		// TODO Auto-generated method stub
@@ -103,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable{
 		long timer = 0;
 		int drawCount = 0;
 		
-		while(gameThread != null) {
+		while(gameThread  != null) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			timer += (currentTime - lastTime);
@@ -160,6 +164,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void stopMusic() {
+		
 		music.stop();
 	}
 	
