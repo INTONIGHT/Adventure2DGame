@@ -47,14 +47,20 @@ public class UI {
 			int y = gp.SCREEN_HEIGHT/2 - (gp.TILE_SIZE*3);
 			g2.drawString(text, x, y);
 			
+			text = "Your time was: " + dFormat.format(playTime) + "!";
+			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+			x = gp.SCREEN_WIDTH/2 - textLength/2;
+			y = gp.SCREEN_HEIGHT/2 + (gp.TILE_SIZE*4);
+			g2.drawString(text, x, y);
+			
 			g2.setFont(arial_80B);
 			g2.setColor(Color.GREEN);
-			text = "Congratulations!!!!!!!!";
+			text = "Congratulations!!!!!";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-			
 			x = gp.SCREEN_WIDTH/2 - textLength/2;
 			y = gp.SCREEN_HEIGHT/2 + (gp.TILE_SIZE*2);
 			g2.drawString(text, x, y);
+			
 			gp.gameThread = null;
 			
 		}else {
