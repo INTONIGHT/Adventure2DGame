@@ -16,7 +16,7 @@ public class Player extends Entity{
 	KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
-	int keysPossessed = 0;
+	public int keysPossessed = 0;
 	//where we draw the player on screen
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -172,6 +172,7 @@ public class Player extends Entity{
 				gp.playSoundEffect(1);
 				keysPossessed ++;
 				gp.obj[index] = null;
+				gp.ui.showMessage("You got a key!");
 				break;
 			case "Door":
 				if(keysPossessed > 0) {

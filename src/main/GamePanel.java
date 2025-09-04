@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public CollisionDetector collisionDetector  = new CollisionDetector(this);
 	public AssetLoader assetLoader = new AssetLoader(this);
+	public UI ui = new UI(this);
 
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
 	public SuperObject obj[] = new SuperObject[10];
@@ -133,6 +134,7 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;//has some inbuilt functions
+		
 		//tile
 		tileM.draw(g2);
 		//object
@@ -145,7 +147,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		//player
 		player.draw(g2);
-		
+		ui.draw(g2);
 		
 		g2.dispose();
 		
