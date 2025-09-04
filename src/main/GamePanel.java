@@ -27,7 +27,8 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	KeyHandler keyH = new KeyHandler();
 	//sound
-	Sound sound = new Sound();
+	Sound music = new Sound();
+	Sound se = new Sound();
 	Thread gameThread;
 	final static int FPS = 60;
 	//entity and objects
@@ -151,18 +152,18 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void playMusic(int i) {
-		sound.setFile(i);
-		sound.play();
-		sound.loop();
+		music.setFile(i);
+		music.play();
+		music.loop();
 	}
 	
 	public void stopMusic() {
-		sound.stop();
+		music.stop();
 	}
 	
 	public void playSoundEffect(int i) {
-		sound.setFile(i);
-		sound.play();
+		se.setFile(i);
+		se.play();
 	}
 	
 	
