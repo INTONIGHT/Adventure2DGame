@@ -44,11 +44,11 @@ public class TileManager {
 			//can load more images when needed
 	}
 	
-	public void setup(int index, String imagePath, boolean collision) {
+	public void setup(int index, String imageName, boolean collision) {
 		UtilityTool utilityTool = new UtilityTool();
 		try {
 			tile[index] = new Tile();
-			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imagePath + ".png"));
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
 			tile[index].image = utilityTool.scaleImage(tile[index].image,gp.TILE_SIZE,gp.TILE_SIZE);
 			tile[index].collision = collision;
 			
@@ -83,7 +83,7 @@ public class TileManager {
 			   worldX - gp.TILE_SIZE < gp.player.worldX + gp.player.SCREEN_X &&
 			   worldY + gp.TILE_SIZE > gp.player.worldY - gp.player.SCREEN_Y &&
 			   worldY - gp.TILE_SIZE < gp.player.worldY + gp.player.SCREEN_Y) {
-				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.TILE_SIZE,gp.TILE_SIZE,null);
+				g2.drawImage(tile[tileNum].image, screenX, screenY,null);
 			}
 			
 			//places grass tiles on whole screen
