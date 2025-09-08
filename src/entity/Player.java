@@ -25,7 +25,7 @@ public class Player extends Entity{
 		SCREEN_X = gp.SCREEN_WIDTH / 2 - (gp.TILE_SIZE / 2);
 		SCREEN_Y = gp.SCREEN_HEIGHT / 2 - (gp.TILE_SIZE / 2);
 		//these values can work for the image to make it smaller for collisions
-		solidArea = new Rectangle(8,16,32,32);
+		solidArea = new Rectangle(10,20,24,24);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		
@@ -157,7 +157,9 @@ public class Player extends Entity{
 			break;
 		}
 		g2.drawImage(image, SCREEN_X, SCREEN_Y,gp.TILE_SIZE,gp.TILE_SIZE,null);
-		
+		//this allows you to see the collision box
+		g2.setColor(Color.red);
+		g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
 		
 	}
 	
