@@ -34,40 +34,23 @@ public class TileManager {
 	}
 	
 	public void getTileImage() {
-		try {
-			tile[0] = new Tile();
-			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass01.png"));
-			
-			
-			
-			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
-			tile[1].collision = true;
+			setup(0,"grass01",false);
+			setup(1,"wall",true);
+			setup(2,"water01",true);
+			setup(3,"earth",false);
+			setup(4,"tree",true);
+			setup(5,"sand",false);
 			//set collision to true for tiles you want to be able to collide with remember if you want different types keep it consistent
-			
-			tile[2] = new Tile();
-			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water01.png"));
-			tile[2].collision = true;
 			//can load more images when needed
-			tile[3] = new Tile();
-			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/earth.png"));
-			
-			tile[4] = new Tile();
-			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
-			tile[4].collision = true;
-			
-			tile[5] = new Tile();
-			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void setup(int index, String imagePath, boolean collision) {
 		UtilityTool utilityTool = new UtilityTool();
-		
 		try {
+			tile[index] = new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imagePath + ".png"));
+			tile[index].image = utilityTool.scaleImage(tile[index].image,gp.TILE_SIZE,gp.TILE_SIZE);
+			tile[index].collision = collision;
 			
 		}catch(IOException e) {
 			e.printStackTrace();
