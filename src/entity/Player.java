@@ -71,6 +71,8 @@ public class Player extends Entity{
 				}
 				spriteCounter  = 0;
 			}
+		}else {
+			spriteNum = 1;
 		}
 		if(keyH.upPressed) {
 			direction = "up";
@@ -158,8 +160,8 @@ public class Player extends Entity{
 		}
 		g2.drawImage(image, SCREEN_X, SCREEN_Y,gp.TILE_SIZE,gp.TILE_SIZE,null);
 		//this allows you to see the collision box
-		g2.setColor(Color.red);
-		g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
+		//g2.setColor(Color.red);
+		//g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
 		
 	}
 	
