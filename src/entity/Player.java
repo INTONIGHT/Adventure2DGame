@@ -17,7 +17,7 @@ public class Player extends Entity{
 	KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
-	public int keysPossessed = 0;
+	//public int keysPossessed = 0;
 	//where we draw the player on screen
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -174,43 +174,46 @@ public class Player extends Entity{
 		//g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
 		
 	}
+	public void oldPickUpObject(int index) {
+		//gp.obj[index] = null;
+		//deletes the object we touch
+//		String objectName = gp.obj[index].name;
+//		
+//		switch(objectName) {
+//		case "Key":
+//			gp.playSoundEffect(1);
+//			keysPossessed ++;
+//			gp.obj[index] = null;
+//			gp.ui.showMessage("You got a key!");
+//			break;
+//		case "Door":
+//			if(keysPossessed > 0) {
+//				gp.obj[index] = null;
+//				gp.playSoundEffect(3);
+//				gp.ui.showMessage("You opened the door!");
+//				keysPossessed--;
+//			}else {
+//				gp.ui.showMessage("You need a key!");
+//			}
+//			break;
+//		case "Boots":
+//			speed += 1;
+//			gp.playSoundEffect(2);
+//			gp.obj[index] = null;
+//			gp.ui.showMessage("Speed up!");
+//			break;
+//		case "Chest":
+//			gp.ui.gameFinished = true;
+//			
+//			gp.playSoundEffect(4);
+//			break;
+//		}
+	
+	}
 	
 	public void pickUpObject(int index) {
 		if(index != -1) {
-			//gp.obj[index] = null;
-			//deletes the object we touch
-			String objectName = gp.obj[index].name;
 			
-			switch(objectName) {
-			case "Key":
-				gp.playSoundEffect(1);
-				keysPossessed ++;
-				gp.obj[index] = null;
-				gp.ui.showMessage("You got a key!");
-				break;
-			case "Door":
-				if(keysPossessed > 0) {
-					gp.obj[index] = null;
-					gp.playSoundEffect(3);
-					gp.ui.showMessage("You opened the door!");
-					keysPossessed--;
-				}else {
-					gp.ui.showMessage("You need a key!");
-				}
-				break;
-			case "Boots":
-				speed += 1;
-				gp.playSoundEffect(2);
-				gp.obj[index] = null;
-				gp.ui.showMessage("Speed up!");
-				break;
-			case "Chest":
-				gp.ui.gameFinished = true;
-				
-				gp.playSoundEffect(4);
-				break;
-			}
 		}
 	}
-	
 }
