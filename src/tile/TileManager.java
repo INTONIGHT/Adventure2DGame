@@ -34,7 +34,7 @@ public class TileManager {
 	}
 	
 	public void getTileImage() {
-		//PLACEHOLDER
+		//PLACEHOLDER to make it simpler
 			setup(0,"grass00",false);
 			setup(1,"grass00",false);
 			setup(2,"grass00",false);

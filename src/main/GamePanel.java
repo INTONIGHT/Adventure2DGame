@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int WORLD_WIDTH = TILE_SIZE  * MAX_WORLD_COL;
 	public final int WORLD_HEIGHT = TILE_SIZE * MAX_WORLD_ROW;
 	
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	//sound
 	Sound music = new Sound();
 	Sound se = new Sound();
@@ -42,6 +42,10 @@ public class GamePanel extends JPanel implements Runnable{
 
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
 	public SuperObject obj[] = new SuperObject[10];
+	//game state
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2;
 	
 	
 	
@@ -59,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable{
 		//turning off the background music as it annoys me lol
 		//can uncomment if you want the music
 		//playMusic(0); //will play the background music 
-		
+		gameState = playState;
 	}
 	
 	public void startGameThread() {
@@ -131,7 +135,15 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
-		player.update();
+		//if you change the playstate number that can helpo
+		if(gameState == playState) {
+			
+			player.update();
+		}
+		if(gameState == pauseState) {
+			
+		}
+		
 	}
 	
 	public void paintComponent(Graphics g) {
