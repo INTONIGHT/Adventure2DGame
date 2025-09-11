@@ -103,6 +103,8 @@ public class Entity {
 		setAction();
 		collisionOn = false;
 		gp.collisionDetector.checkTile(this);
+		gp.collisionDetector.checkObject(this,false);
+		gp.collisionDetector.checkPlayer(this);
 		
 		if(!collisionOn) {
 			switch(direction) {
