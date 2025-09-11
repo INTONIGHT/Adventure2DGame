@@ -13,7 +13,7 @@ import main.KeyHandler;
 import main.UtilityTool;
 
 public class Player extends Entity{
-	GamePanel gp;
+	
 	KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
@@ -21,7 +21,8 @@ public class Player extends Entity{
 	//where we draw the player on screen
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
-		this.gp = gp;
+		super(gp);
+		
 		this.keyH = keyH;
 		SCREEN_X = gp.SCREEN_WIDTH / 2 - (gp.TILE_SIZE / 2);
 		SCREEN_Y = gp.SCREEN_HEIGHT / 2 - (gp.TILE_SIZE / 2);
