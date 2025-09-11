@@ -96,6 +96,9 @@ public class Player extends Entity{
 		//check object collision
 		int objIndex = gp.collisionDetector.checkObject(this, true);
 		pickUpObject(objIndex);
+		//check npc Collision
+		int npcIndex = gp.collisionDetector.checkEntity(this, gp.npc);
+		npcInteraction(npcIndex);
 		
 		//if collision is false
 		if(!collisionOn) {
@@ -119,6 +122,8 @@ public class Player extends Entity{
 		
 		
 	}
+	
+
 	public void draw(Graphics2D g2) {
 		//g2.setColor(Color.white);
 		//g2.fillRect(x, y, gp.TILE_SIZE, gp.TILE_SIZE);
@@ -204,6 +209,13 @@ public class Player extends Entity{
 	public void pickUpObject(int index) {
 		if(index != -1) {
 			
+		}
+	}
+	
+	public void npcInteraction(int npcIndex) {
+		// TODO Auto-generated method stub
+		if(npcIndex != -1) {
+			System.out.println("You hit the old man");
 		}
 	}
 }

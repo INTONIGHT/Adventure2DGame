@@ -22,6 +22,7 @@ public class Entity {
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	//default solid area for entitties
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
+	public int actionLockCounter = 0;
 	
 	public boolean collisionOn = false;
 	GamePanel gp;
@@ -92,6 +93,45 @@ public class Entity {
 				break;
 			}
 			g2.drawImage(image, screenX, screenY, gp.TILE_SIZE,gp.TILE_SIZE,null);
+		}
+	}
+	
+	public void setAction() {
+		
+	}
+	public void update() {
+		setAction();
+		collisionOn = false;
+		gp.collisionDetector.checkTile(this);
+		
+		if(!collisionOn) {
+			switch(direction) {
+			case "up":
+				worldY -= speed;
+				break;
+			case "down":
+				worldY += speed;
+				break;
+			case "left":
+				worldX -= speed;
+				break;
+			case "right":
+				worldX += speed;
+				break;
+				
+			}
+		}
+		spriteCounter ++;
+		//gets called 60 times a second
+		//this rate will change the sprite every 10 frames
+		if(spriteCounter > 10) {//you can change this number if you feel it isnt smooth
+			if(spriteNum == 1) {
+				spriteNum = 2;
+			}
+			else if(spriteNum == 2) {
+				spriteNum =1;
+			}
+			spriteCounter  = 0;
 		}
 	}
 	
