@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
 	public SuperObject obj[] = new SuperObject[10];
+	public Entity npc[] = new Entity[10];
 	//game state
 	public int gameState;
 	public final int playState = 1;
@@ -60,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void setUpGame() {
 		assetLoader.setObject();
+		assetLoader.setNPC();
 		//turning off the background music as it annoys me lol
 		//can uncomment if you want the music
 		//playMusic(0); //will play the background music 
@@ -166,7 +169,12 @@ public class GamePanel extends JPanel implements Runnable{
 				obj[i].draw(g2, this);
 			}
 		}
-		
+		//NPC
+		for(int i =0; i<npc.length;i++) {
+			if(npc[i] != null) {
+				npc[i].draw(g2);
+			}
+		}
 		
 		//player
 		player.draw(g2);
