@@ -113,6 +113,15 @@ public class UI {
 		int width = gp.SCREEN_WIDTH - (gp.TILE_SIZE * 4);
 		int height = gp.TILE_SIZE * 4;
 		drawSubWindow(x,y,width,height);
+		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+		x += gp.TILE_SIZE;
+		y += gp.TILE_SIZE;
+		//drawing text
+		for(String line : currentDialogue.split("\n")) {
+			g2.drawString(line, x, y);
+			y += 40;
+		}
+		
 		
 	}
 	

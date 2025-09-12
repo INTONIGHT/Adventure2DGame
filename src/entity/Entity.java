@@ -27,6 +27,7 @@ public class Entity {
 	public boolean collisionOn = false;
 	GamePanel gp;
 	String dialogues[] = new String[20];
+	public int dialogueIndex = 0;
 	
 	
 	public Entity(GamePanel gp) {

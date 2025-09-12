@@ -56,9 +56,31 @@ public class NPC_OldMan extends Entity{
 	
 	public void setDialogue() {
 		dialogues[0] = "Hello there";
+		dialogues[1] = "So you've come to this island \nto find the treasure?";
+		dialogues[2] = "I used to be a great wizard but now... \nI'm a bit too old for taking an adventure.";
+		dialogues[3] = "Well, good luck to you";
 	}
 	
 	public void speak() {
-		gp.ui.currentDialogue = dialogues[0];
+		if(dialogues[dialogueIndex] == null) {
+			dialogueIndex = 0;
+		}
+		gp.ui.currentDialogue = dialogues[dialogueIndex];
+		dialogueIndex ++;
+		switch(gp.player.direction) {
+		case "up":
+			direction = "down";
+			break;
+		case "down":
+			direction = "up";
+			break;
+		case "left":
+			direction = "right";
+			break;
+		case "right":
+			direction = "left";
+			break;
+			
+		}
 	}
 }

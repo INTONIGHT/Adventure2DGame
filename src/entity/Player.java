@@ -14,7 +14,7 @@ import main.KeyHandler;
 
 public class Player extends Entity{
 	
-	KeyHandler keyH;
+	public KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
 	//public int keysPossessed = 0;
@@ -215,8 +215,12 @@ public class Player extends Entity{
 	public void npcInteraction(int npcIndex) {
 		// TODO Auto-generated method stub
 		if(npcIndex != -1) {
-			gp.gameState = gp.dialogueState;
-			gp.npc[npcIndex].speak();
+			if(gp.keyH.spacePressed) {
+				gp.gameState = gp.dialogueState;
+				gp.npc[npcIndex].speak();
+			}
+			gp.keyH.spacePressed = false;
+			
 		}
 	}
 }

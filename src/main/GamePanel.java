@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int WORLD_WIDTH = TILE_SIZE  * MAX_WORLD_COL;
 	public final int WORLD_HEIGHT = TILE_SIZE * MAX_WORLD_ROW;
 	
-	KeyHandler keyH = new KeyHandler(this);
+	public KeyHandler keyH = new KeyHandler(this);
 	//sound
 	Sound music = new Sound();
 	Sound se = new Sound();
