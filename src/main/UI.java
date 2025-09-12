@@ -89,14 +89,38 @@ public class UI {
 		this.g2 = g2;
 		g2.setFont(arial_40);
 		g2.setColor(Color.white);
+		//play state
 		if(gp.gameState == gp.playState) {
 			//draw playstate
 		}
+		//pausestate
 		if(gp.gameState == gp.pauseState) {
 			drawPauseScreen();
 		}
+		//dialogue state
+		if(gp.gameState == gp.dialogueState) {
+			drawDialogueScreen();
+		}
 	}
 	
+	public void drawDialogueScreen() {
+		// TODO Auto-generated method stub
+		//window
+		int x = gp.TILE_SIZE * 2;
+		int y = gp.TILE_SIZE / 2;
+		int width = gp.SCREEN_WIDTH - (gp.TILE_SIZE * 4);
+		int height = gp.TILE_SIZE * 4;
+		drawSubWindow(x,y,width,height);
+		
+	}
+	
+	public void drawSubWindow(int x, int y, int width, int height) {
+		Color c = new Color(0,0,0);
+		g2.setColor(c);
+		//arcwidth height are the 35
+		g2.fillRoundRect(x, y, width, height,35,35);
+	}
+
 	public void drawPauseScreen() {
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,80));
 		String text = "PAUSED";

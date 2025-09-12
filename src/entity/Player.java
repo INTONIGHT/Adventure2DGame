@@ -215,7 +215,8 @@ public class Player extends Entity{
 	public void npcInteraction(int npcIndex) {
 		// TODO Auto-generated method stub
 		if(npcIndex != -1) {
-			System.out.println("You hit the old man");
+			gp.gameState = gp.dialogueState;
+			
 		}
 	}
 }
