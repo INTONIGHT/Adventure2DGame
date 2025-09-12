@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -20,6 +21,7 @@ public class UI {
 	double playTime;
 	//this means up to 2 decimal points
 	DecimalFormat dFormat = new DecimalFormat("#0.00");
+	public String currentDialogue = "";
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -115,10 +117,16 @@ public class UI {
 	}
 	
 	public void drawSubWindow(int x, int y, int width, int height) {
-		Color c = new Color(0,0,0);
+		//the 4th number affects the opacity
+		Color c = new Color(0,0,0,210);
 		g2.setColor(c);
 		//arcwidth height are the 35
 		g2.fillRoundRect(x, y, width, height,35,35);
+		c = new Color(255,255,255);
+		g2.setColor(c);
+		//width of the stroke
+		g2.setStroke(new BasicStroke(5));
+		g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
 	}
 
 	public void drawPauseScreen() {

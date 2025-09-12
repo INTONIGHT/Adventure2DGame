@@ -14,6 +14,7 @@ public class NPC_OldMan extends Entity{
 		direction = "down";
 		speed = 1;
 		getNpcImage();
+		setDialogue();
 		
 	}
 	public void getNpcImage() {
@@ -53,5 +54,11 @@ public class NPC_OldMan extends Entity{
 		
 	}
 	
+	public void setDialogue() {
+		dialogues[0] = "Hello there";
+	}
 	
+	public void speak() {
+		gp.ui.currentDialogue = dialogues[0];
+	}
 }

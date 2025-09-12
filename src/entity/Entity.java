@@ -26,6 +26,7 @@ public class Entity {
 	
 	public boolean collisionOn = false;
 	GamePanel gp;
+	String dialogues[] = new String[20];
 	
 	
 	public Entity(GamePanel gp) {
@@ -97,6 +98,10 @@ public class Entity {
 	}
 	
 	public void setAction() {
+		
+	}
+	
+	public void speak() {
 		
 	}
 	public void update() {

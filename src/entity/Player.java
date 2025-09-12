@@ -216,7 +216,7 @@ public class Player extends Entity{
 		// TODO Auto-generated method stub
 		if(npcIndex != -1) {
 			gp.gameState = gp.dialogueState;
-			
+			gp.npc[npcIndex].speak();
 		}
 	}
 }
