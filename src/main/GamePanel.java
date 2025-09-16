@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int dialogueState = 3;
+	public final int titleState = 0;
 	
 	
 	
@@ -67,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable{
 		//turning off the background music as it annoys me lol
 		//can uncomment if you want the music
 		//playMusic(0); //will play the background music 
-		gameState = playState;
+		gameState = titleState;
 	}
 	
 	public void startGameThread() {
@@ -167,26 +168,33 @@ public class GamePanel extends JPanel implements Runnable{
 			drawStart = System.nanoTime();
 		}
 		
-		
+		//TITLE Screen
+		if(gameState == titleState) {
+			ui.draw(g2);
+		}
+		//others
+		else {
+			tileM.draw(g2);
+			//object
+			for(int i = 0; i< obj.length;i++) {
+				if(obj[i] != null) {
+					obj[i].draw(g2, this);
+				}
+			}
+			//NPC
+			for(int i =0; i<npc.length;i++) {
+				if(npc[i] != null) {
+					npc[i].draw(g2);
+				}
+			}
+			
+			//player
+			player.draw(g2);
+			ui.draw(g2);
+		}
 		
 		//tile
-		tileM.draw(g2);
-		//object
-		for(int i = 0; i< obj.length;i++) {
-			if(obj[i] != null) {
-				obj[i].draw(g2, this);
-			}
-		}
-		//NPC
-		for(int i =0; i<npc.length;i++) {
-			if(npc[i] != null) {
-				npc[i].draw(g2);
-			}
-		}
 		
-		//player
-		player.draw(g2);
-		ui.draw(g2);
 		//DEBUG
 		if(keyH.checkDrawTime) {
 			long drawEnd = System.nanoTime();

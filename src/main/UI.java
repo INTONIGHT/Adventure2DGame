@@ -103,8 +103,32 @@ public class UI {
 		if(gp.gameState == gp.dialogueState) {
 			drawDialogueScreen();
 		}
+		if(gp.gameState == gp.titleState) {
+			drawTitleState();
+		}
 	}
 	
+	public void drawTitleState() {
+		// TODO Auto-generated method stub
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
+		String text = "Adventure Game";
+		int x = getCenteredX(text);
+		int y = gp.TILE_SIZE * 3;
+		//shadow
+		g2.setColor(Color.gray);
+		g2.drawString(text, x+5, y+5);
+		//main color
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		//image
+		
+		x = gp.SCREEN_WIDTH / 2 - (gp.TILE_SIZE*2)/2;
+		y += gp.TILE_SIZE * 2;
+		g2.drawImage(gp.player.down1,x,y,gp.TILE_SIZE*2,gp.TILE_SIZE*2,null);
+		
+		
+	}
+
 	public void drawDialogueScreen() {
 		// TODO Auto-generated method stub
 		//window
