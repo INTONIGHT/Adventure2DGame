@@ -23,6 +23,22 @@ public class KeyHandler implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int code = e.getKeyCode();
+		//TITLE Screen
+		if(gp.gameState == gp.titleState) {
+			if(code == KeyEvent.VK_W) {
+				gp.ui.commandNum--;
+				if(gp.ui.commandNum < 0) {
+					gp.ui.commandNum = 2;
+				}
+			}
+			if(code == KeyEvent.VK_S) {
+				gp.ui.commandNum++;
+				if(gp.ui.commandNum > 2) {
+					gp.ui.commandNum = 0;
+				}
+			}
+		}
+		
 		//playState
 		if(gp.gameState == gp.playState) {
 			if(code == KeyEvent.VK_W) {

@@ -22,6 +22,7 @@ public class UI {
 	//this means up to 2 decimal points
 	DecimalFormat dFormat = new DecimalFormat("#0.00");
 	public String currentDialogue = "";
+	public int commandNum = 0;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -125,6 +126,31 @@ public class UI {
 		x = gp.SCREEN_WIDTH / 2 - (gp.TILE_SIZE*2)/2;
 		y += gp.TILE_SIZE * 2;
 		g2.drawImage(gp.player.down1,x,y,gp.TILE_SIZE*2,gp.TILE_SIZE*2,null);
+		//menu
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+		
+		text = "NEW GAME";
+		x = getCenteredX(text);
+		y += gp.TILE_SIZE * 3.5;
+		g2.drawString(text, x, y);
+		if(commandNum == 0) {
+			g2.drawString(">", x - gp.TILE_SIZE, y);
+		}
+		
+		text = "LOAD GAME";
+		x = getCenteredX(text);
+		y += gp.TILE_SIZE;
+		g2.drawString(text, x, y);
+		if(commandNum == 1) {
+			g2.drawString(">", x - gp.TILE_SIZE, y);
+		}
+		text = "QUIT";
+		x = getCenteredX(text);
+		y += gp.TILE_SIZE;
+		g2.drawString(text, x, y);
+		if(commandNum == 2) {
+			g2.drawString(">", x - gp.TILE_SIZE, y);
+		}
 		
 		
 	}
