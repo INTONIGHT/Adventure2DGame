@@ -121,12 +121,29 @@ public class UI {
 	}
 	
 	public void drawPlayerLife() {
+		//can use this to test the drawing:
+		//gp.player.life = 5;
 		// TODO Auto-generated method stub
 		int x = gp.TILE_SIZE/2;
 		int y = gp.TILE_SIZE/2;
 		int i =0;
+		//draw max life
 		while(i < gp.player.maxLife/2) {
 			g2.drawImage(heart_blank, x,y,null);
+			i++;
+			x += gp.TILE_SIZE;
+		}
+		//reset
+		 x = gp.TILE_SIZE/2;
+		 y = gp.TILE_SIZE/2;
+		 i =0;
+		 //draw current life
+		while(i < gp.player.life) {
+			g2.drawImage(heart_half,x,y,null);
+			i++;
+			if(i <gp.player.life) {
+				g2.drawImage(heart_full, x,y,null);
+			}
 			i++;
 			x += gp.TILE_SIZE;
 		}
