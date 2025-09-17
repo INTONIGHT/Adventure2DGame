@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
+import object.OBJ_Heart;
 import object.OBJ_Key;
+import object.SuperObject;
 
 public class UI {
 	GamePanel gp;
@@ -23,6 +25,7 @@ public class UI {
 	DecimalFormat dFormat = new DecimalFormat("#0.00");
 	public String currentDialogue = "";
 	public int commandNum = 0;
+	public BufferedImage heart_full,heart_half,heart_blank;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -30,6 +33,11 @@ public class UI {
 		arial_80B = new Font("Arial",Font.BOLD,80);
 //		OBJ_Key key = new OBJ_Key(gp);
 //		keyImage = key.image;
+		//create HUD object
+		SuperObject heart = new OBJ_Heart(gp);
+		heart_full = heart.image;
+		heart_half = heart.image2;
+		heart_blank = heart.image3;
 	}
 	
 	public void showMessage(String text) {
@@ -95,13 +103,16 @@ public class UI {
 		//play state
 		if(gp.gameState == gp.playState) {
 			//draw playstate
+			drawPlayerLife();
 		}
 		//pausestate
 		if(gp.gameState == gp.pauseState) {
+			drawPlayerLife();
 			drawPauseScreen();
 		}
 		//dialogue state
 		if(gp.gameState == gp.dialogueState) {
+			drawPlayerLife();
 			drawDialogueScreen();
 		}
 		if(gp.gameState == gp.titleState) {
@@ -109,6 +120,18 @@ public class UI {
 		}
 	}
 	
+	public void drawPlayerLife() {
+		// TODO Auto-generated method stub
+		int x = gp.TILE_SIZE/2;
+		int y = gp.TILE_SIZE/2;
+		int i =0;
+		while(i < gp.player.maxLife/2) {
+			g2.drawImage(heart_blank, x,y,null);
+			i++;
+			x += gp.TILE_SIZE;
+		}
+	}
+
 	public void drawTitleState() {
 		// TODO Auto-generated method stub
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));

@@ -17,6 +17,7 @@ public class Player extends Entity{
 	public KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
+	
 	//public int keysPossessed = 0;
 	//where we draw the player on screen
 	
