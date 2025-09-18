@@ -22,9 +22,21 @@ public class EventHandler {
 	}
 	
 	public void checkEvent() {
+		//probably want a method of actually creating event locations and checking not sure
 		
+		if(hit(27,16,"right")) {
+			//event happens
+			damagePit(gp.dialogueState);
+		}
 	}
 	
+	public void damagePit(int gameState) {
+		// TODO Auto-generated method stub
+		gp.gameState = gameState;
+		gp.ui.currentDialogue = "You fall into a pit!";
+		gp.player.life -= 1;
+	}
+
 	public boolean hit(int eventCol, int eventRow, String reqDirection) {
 		boolean hit = false;
 		
@@ -32,8 +44,8 @@ public class EventHandler {
 		gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 		
 		eventRect.x = eventCol*gp.TILE_SIZE + eventRect.x;
-		eventRect.y = eventCol*gp.TILE_SIZE + eventRect.y;
-		
+		eventRect.y = eventRow*gp.TILE_SIZE + eventRect.y;
+		//System.out.println("PlayerSolidArea:" + gp.player.solidArea + " eventRect:" + eventRect);
 		if(gp.player.solidArea.intersects(eventRect)) {
 			if(gp.player.direction.equals(reqDirection) || reqDirection.contentEquals("any")) {
 				hit = true;
