@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public CollisionDetector collisionDetector  = new CollisionDetector(this);
 	public AssetLoader assetLoader = new AssetLoader(this);
 	public UI ui = new UI(this);
+	public EventHandler eventHandler = new EventHandler(this);
 
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
 	public SuperObject obj[] = new SuperObject[10];
