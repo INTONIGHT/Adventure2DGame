@@ -28,6 +28,10 @@ public class EventHandler {
 			//event happens
 			damagePit(gp.dialogueState);
 		}
+		//healing
+		if(hit(23,12,"up")) {
+			healingPool(gp.dialogueState);
+		}
 	}
 	
 	public void damagePit(int gameState) {
@@ -59,5 +63,15 @@ public class EventHandler {
 		eventRect.y = eventRectDefaultY;
 		
 		return hit;
+	}
+	
+	public void healingPool(int gameState) {
+		if(gp.keyH.enterPressed) {
+			gp.gameState = gameState;
+			gp.ui.currentDialogue = "You drink the water.\n Your life has been recovered";
+			gp.player.life = gp.player.maxLife;
+			
+		}
+		gp.keyH.enterPressed = false;
 	}
 }
