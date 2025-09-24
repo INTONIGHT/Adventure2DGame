@@ -35,6 +35,8 @@ public class EventHandler {
 		gp.gameState = gameState;
 		gp.ui.currentDialogue = "You fall into a pit!";
 		gp.player.life -= 1;
+		//gp.player.collisionOn = true;
+		gp.player.direction = "left";
 	}
 
 	public boolean hit(int eventCol, int eventRow, String reqDirection) {

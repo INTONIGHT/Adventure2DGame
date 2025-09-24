@@ -105,7 +105,7 @@ public class Player extends Entity{
 		npcInteraction(npcIndex);
 		//check event
 		gp.eventHandler.checkEvent();
-		
+		//System.out.println("collisionOn value: " + collisionOn);
 		//if collision is false
 		if(!collisionOn) {
 			switch(direction) {
