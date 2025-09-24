@@ -32,8 +32,21 @@ public class EventHandler {
 		if(hit(23,12,"up")) {
 			healingPool(gp.dialogueState);
 		}
+		//example of teleport
+		
+//		if(hit(27,16,"right")) {
+//			teleport(gp.dialogueState);
+//		}
 	}
 	
+	public void teleport(int gameState) {
+		// TODO Auto-generated method stub
+		gp.gameState = gameState;
+		gp.player.worldX = gp.TILE_SIZE*37;
+		gp.player.worldY = gp.TILE_SIZE *10;
+		gp.ui.currentDialogue = "Teleport!";
+	}
+
 	public void damagePit(int gameState) {
 		// TODO Auto-generated method stub
 		gp.gameState = gameState;
