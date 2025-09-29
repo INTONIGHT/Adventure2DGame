@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 public class EventHandler {
 	GamePanel gp;
 	EventRect eventRect[][];
+	int previousEventX,previousEventY;
+	boolean canTouchEvent;
 	
 	
 	public EventHandler(GamePanel gp) {
@@ -36,15 +38,30 @@ public class EventHandler {
 	
 	public void checkEvent() {
 		//probably want a method of actually creating event locations and checking not sure
+		//check to see if the player is more than 1 tile away from the last event
+		int xDelta = Math.abs(gp.player.worldX - previousEventX);
+		int yDelta = Math.abs(gp.player.worldY - previousEventY);
+		int distance = Math.max(xDelta, yDelta);
+		if(distance > gp.TILE_SIZE) {
+			canTouchEvent = true;
+		}
 		
-		if(hit(27,16,"right")) {
-			//event happens
-			damagePit(27,16,gp.dialogueState);
+		if(canTouchEvent) {
+			if(hit(27,16,"right")) {
+				//event happens
+				damagePit(27,16,gp.dialogueState);
+			}
+			if(hit(23,19,"any")) {
+				//event happens
+				damagePit(23,19,gp.dialogueState);
+			}
+			if(hit(23,12,"up")) {
+				healingPool(23,12,gp.dialogueState);
+			}
 		}
+		
 		//healing
-		if(hit(23,12,"up")) {
-			healingPool(23,12,gp.dialogueState);
-		}
+		
 		//example of teleport
 		
 //		if(hit(27,16,"right")) {
@@ -67,8 +84,9 @@ public class EventHandler {
 		gp.player.life -= 1;
 		
 		//gp.player.direction = "left";
+		canTouchEvent = false;
 		//this would effectively let you do one time events
-		eventRect[col][row].eventDone = true;
+		//eventRect[col][row].eventDone = true;
 	}
 
 	public boolean hit(int col, int row, String reqDirection) {
@@ -83,6 +101,9 @@ public class EventHandler {
 		if(gp.player.solidArea.intersects(eventRect[col][row]) && !eventRect[col][row].eventDone) {
 			if(gp.player.direction.equals(reqDirection) || reqDirection.contentEquals("any")) {
 				hit = true;
+				previousEventX = gp.player.worldX;
+				previousEventY = gp.player.worldY;
+				
 			}
 		}
 		gp.player.solidArea.x = gp.player.solidAreaDefaultX;
