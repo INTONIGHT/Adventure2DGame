@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
-import object.SuperObject;
+
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -43,8 +46,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public EventHandler eventHandler = new EventHandler(this);
 
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
-	public SuperObject obj[] = new SuperObject[10];
+	public Entity obj[] = new Entity[10];
 	public Entity npc[] = new Entity[10];
+	ArrayList<Entity> entityList = new ArrayList<>();
 	//game state
 	public int gameState;
 	public final int playState = 1;
@@ -175,22 +179,38 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		//others
 		else {
+			
+			
 			tileM.draw(g2);
-			//object
-			for(int i = 0; i< obj.length;i++) {
-				if(obj[i] != null) {
-					obj[i].draw(g2, this);
-				}
-			}
-			//NPC
+			
+			//adding entities to the array list
+			entityList.add(player);
 			for(int i =0; i<npc.length;i++) {
 				if(npc[i] != null) {
-					npc[i].draw(g2);
+					entityList.add(npc[i]);
 				}
 			}
 			
-			//player
-			player.draw(g2);
+			for(int i =0; i<obj.length;i++) {
+				if(obj[i] != null) {
+					entityList.add(obj[i]);
+				}
+			}
+			//sort the list based on world y
+			Collections.sort(entityList, new Comparator<Entity>() {
+
+				@Override
+				public int compare(Entity e1, Entity e2) {
+					int result = Integer.compare(e1.worldY, e2.worldY);
+					return result;
+				}
+				
+			});
+			//draw entities
+			for(int i =0; i<entityList.size();i++) {
+				entityList.get(i).draw(g2);
+			}
+			
 			ui.draw(g2);
 		}
 		
