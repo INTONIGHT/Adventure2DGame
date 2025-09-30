@@ -4,17 +4,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Boots extends SuperObject{
-	GamePanel gp;
+public class OBJ_Boots extends Entity{
+
 	public OBJ_Boots(GamePanel gp) {
+		super(gp);
 		name = "Boots";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/boots.png"));
-			utilityTool.scaleImage(image, gp.TILE_SIZE, gp.TILE_SIZE);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
+		down1 = setup("/objects/boot.png");
 	}
 }
