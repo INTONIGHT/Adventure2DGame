@@ -158,6 +158,11 @@ public class GamePanel extends JPanel implements Runnable{
 					npc[i].update();
 				}
 			}
+			for(int i =0; i<monsters.length;i++) {
+				if(monsters[i] != null) {
+					monsters[i].update();
+				}
+			}
 		}
 		if(gameState == pauseState) {
 			
@@ -198,6 +203,12 @@ public class GamePanel extends JPanel implements Runnable{
 					entityList.add(obj[i]);
 				}
 			}
+			for(int i =0; i<monsters.length;i++) {
+				if(monsters[i] != null) {
+					entityList.add(monsters[i]);
+				}
+			}
+			
 			//sort the list based on world y
 			Collections.sort(entityList, new Comparator<Entity>() {
 

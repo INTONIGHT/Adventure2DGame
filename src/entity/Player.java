@@ -103,6 +103,8 @@ public class Player extends Entity{
 		//check npc Collision
 		int npcIndex = gp.collisionDetector.checkEntity(this, gp.npc);
 		npcInteraction(npcIndex);
+		//check monster collision
+		int monsterIndex = gp.collisionDetector.checkEntity(this, gp.monsters);
 		//check event
 		gp.eventHandler.checkEvent();
 		//System.out.println("collisionOn value: " + collisionOn);

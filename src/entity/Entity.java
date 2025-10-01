@@ -140,6 +140,8 @@ public class Entity {
 		collisionOn = false;
 		gp.collisionDetector.checkTile(this);
 		gp.collisionDetector.checkObject(this,false);
+		gp.collisionDetector.checkEntity(this, gp.npc);
+		gp.collisionDetector.checkEntity(this, gp.monsters);
 		gp.collisionDetector.checkPlayer(this);
 		
 		if(!collisionOn) {
