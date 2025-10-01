@@ -132,8 +132,12 @@ public class CollisionDetector {
 					break;
 				}
 				if(entity.solidArea.intersects(target[i].solidArea)) {
-					entity.collisionOn = true;
-					index = i;
+					//stops entities from colliding with themselves
+					if(target[i] != entity) {
+						entity.collisionOn = true;
+						index = i;
+					}
+					
 				}
 				entity.solidArea.x = entity.solidAreaDefaultX;
 				entity.solidArea.y = entity.solidAreaDefaultY;
