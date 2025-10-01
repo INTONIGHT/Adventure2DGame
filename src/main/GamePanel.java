@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//display 10 objects at the same time not 10 objects can change this value if you want but more objects will slow the game down
 	public Entity obj[] = new Entity[10];
 	public Entity npc[] = new Entity[10];
+	public Entity monsters[] = new Entity[20];
 	ArrayList<Entity> entityList = new ArrayList<>();
 	//game state
 	public int gameState;
@@ -70,6 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setUpGame() {
 		assetLoader.setObject();
 		assetLoader.setNPC();
+		assetLoader.setMonster();
 		//turning off the background music as it annoys me lol
 		//can uncomment if you want the music
 		//playMusic(0); //will play the background music 

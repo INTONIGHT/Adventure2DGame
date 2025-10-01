@@ -173,4 +173,13 @@ public class Entity {
 		}
 	}
 	
+	public void setSolidArea(int x, int y, int width,int height) {
+		solidArea.x = x;
+		solidArea.y = y;
+		solidArea.width = width;
+		solidArea.height = height;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+	}
+	
 }
