@@ -129,7 +129,14 @@ public class Player extends Entity{
 		}else {
 			spriteNum = 1;
 		}
-		
+		//update the invinicbility counter
+		if(invincible) {
+			invincibleCounter ++;
+			if(invincibleCounter >60) {
+				invincible = false;
+				invincibleCounter = 0;
+			}
+		}
 		
 		
 	}
