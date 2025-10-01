@@ -63,6 +63,22 @@ public class Player extends Entity{
 	
 	public void update() {
 		if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+			if(keyH.upPressed) {
+				direction = "up";
+				
+			}
+			if(keyH.downPressed) {
+				direction = "down";
+				
+			}
+			if(keyH.leftPressed) {
+				direction = "left";
+				
+			}
+			if(keyH.rightPressed) {
+				direction = "right";
+				
+			}
 			spriteCounter ++;
 			//gets called 60 times a second
 			//this rate will change the sprite every 10 frames
@@ -75,25 +91,7 @@ public class Player extends Entity{
 				}
 				spriteCounter  = 0;
 			}
-		}else {
-			spriteNum = 1;
-		}
-		if(keyH.upPressed) {
-			direction = "up";
-			
-		}
-		if(keyH.downPressed) {
-			direction = "down";
-			
-		}
-		if(keyH.leftPressed) {
-			direction = "left";
-			
-		}
-		if(keyH.rightPressed) {
-			direction = "right";
-			
-		}
+		
 		//check the collision
 		collisionOn = false;
 		gp.collisionDetector.checkTile(this);
@@ -105,6 +103,7 @@ public class Player extends Entity{
 		npcInteraction(npcIndex);
 		//check monster collision
 		int monsterIndex = gp.collisionDetector.checkEntity(this, gp.monsters);
+		monsterInteraction(monsterIndex);
 		//check event
 		gp.eventHandler.checkEvent();
 		//System.out.println("collisionOn value: " + collisionOn);
@@ -125,6 +124,10 @@ public class Player extends Entity{
 				break;
 				
 			}
+		}
+		
+		}else {
+			spriteNum = 1;
 		}
 		
 		
@@ -177,42 +180,9 @@ public class Player extends Entity{
 		//g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
 		
 	}
-	public void oldPickUpObject(int index) {
-		//gp.obj[index] = null;
-		//deletes the object we touch
-//		String objectName = gp.obj[index].name;
-//		
-//		switch(objectName) {
-//		case "Key":
-//			gp.playSoundEffect(1);
-//			keysPossessed ++;
-//			gp.obj[index] = null;
-//			gp.ui.showMessage("You got a key!");
-//			break;
-//		case "Door":
-//			if(keysPossessed > 0) {
-//				gp.obj[index] = null;
-//				gp.playSoundEffect(3);
-//				gp.ui.showMessage("You opened the door!");
-//				keysPossessed--;
-//			}else {
-//				gp.ui.showMessage("You need a key!");
-//			}
-//			break;
-//		case "Boots":
-//			speed += 1;
-//			gp.playSoundEffect(2);
-//			gp.obj[index] = null;
-//			gp.ui.showMessage("Speed up!");
-//			break;
-//		case "Chest":
-//			gp.ui.gameFinished = true;
-//			
-//			gp.playSoundEffect(4);
-//			break;
-//		}
 	
-	}
+	
+	
 	
 	public void pickUpObject(int index) {
 		if(index != -1) {
@@ -228,6 +198,17 @@ public class Player extends Entity{
 				gp.npc[npcIndex].speak();
 			}
 			gp.keyH.spacePressed = false;
+			
+		}
+	}
+	
+	public void monsterInteraction(int monsterIndex) {
+		if(monsterIndex != -1) {
+			if(!invincible) {
+				life -=1;
+				invincible = true;
+				
+			}
 			
 		}
 	}
