@@ -10,6 +10,7 @@ public class MON_GreenSlime extends Entity{
 	public MON_GreenSlime(GamePanel gp) {
 		super(gp);
 		// TODO Auto-generated constructor stub
+		type = 2;
 		name = "Green Slime";
 		speed = 1;
 		maxLife = 4;

@@ -40,6 +40,7 @@ public class Entity {
 	public boolean collision = false;
 	public boolean invincible = false;
 	public int invincibleCounter =0;
+	public int type;//0 = player 1 =npc 2 =monster
 	
 	
 	public Entity(GamePanel gp) {
@@ -144,7 +145,15 @@ public class Entity {
 		gp.collisionDetector.checkObject(this,false);
 		gp.collisionDetector.checkEntity(this, gp.npc);
 		gp.collisionDetector.checkEntity(this, gp.monsters);
-		gp.collisionDetector.checkPlayer(this);
+		boolean contactPlayer = gp.collisionDetector.checkPlayer(this);
+		
+		if(this.type == 2 && contactPlayer) {
+			if(!gp.player.invincible) {
+				//give damage
+				gp.player.life -=1;
+				gp.player.invincible = true;
+			}
+		}
 		
 		if(!collisionOn) {
 			switch(direction) {
