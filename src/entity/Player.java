@@ -1,6 +1,7 @@
 package entity;
 
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -181,7 +182,11 @@ public class Player extends Entity{
 			}
 			break;
 		}
+		if(invincible) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3F));
+		}
 		g2.drawImage(image, SCREEN_X, SCREEN_Y,null);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
 		//this allows you to see the collision box
 		//g2.setColor(Color.red);
 		//g2.drawRect(SCREEN_X + solidArea.x,SCREEN_Y + solidArea.y, solidArea.width,solidArea.height);
