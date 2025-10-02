@@ -110,7 +110,9 @@ public class TileManager {
 		
 		while(worldCol < gp.MAX_WORLD_COL && worldRow < gp.MAX_WORLD_ROW) {
 			//can use tileMap[col][row] for the random
+			
 			int tileNum = mapTileNum[worldCol][worldRow];
+			//System.out.println("tileNum: " + tileNum + " worldCol: " + worldCol + " worldRow: " +worldRow);
 			//check where the tiles world x is at
 			//world x is where its on the map screen x is where we need to draw it
 			int worldX = worldCol * gp.TILE_SIZE;
