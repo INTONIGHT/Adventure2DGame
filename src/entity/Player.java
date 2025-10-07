@@ -49,17 +49,27 @@ public class Player extends Entity{
 		
 	}
 	public void getPlayerImage() {
-		up1 = setup("/player/boy_up_1");
-		up2 = setup("/player/boy_up_2");
-		left1 = setup("/player/boy_left_1");
-		left2 = setup("/player/boy_left_2");
-		right1 = setup("/player/boy_right_1");
-		right2 = setup("/player/boy_right_2");
-		down1 = setup("/player/boy_down_1");
-		down2 = setup("/player/boy_down_2");
+		up1 = setup("/player/boy_up_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		up2 = setup("/player/boy_up_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		left1 = setup("/player/boy_left_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		left2 = setup("/player/boy_left_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		right1 = setup("/player/boy_right_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		right2 = setup("/player/boy_right_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		down1 = setup("/player/boy_down_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		down2 = setup("/player/boy_down_2",gp.TILE_SIZE,gp.TILE_SIZE);
 		
 	}
 	
+	public void getPLayerAttackImage() {
+		attackUp1 = setup("player/boy_attack_up_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackUp2 = setup("player/boy_attack_up_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackLeft1 = setup("player/boy_attack_left_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackLeft2 = setup("player/boy_attack_left_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackRight1 = setup("player/boy_attack_right_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackRight2 = setup("player/boy_attack_right_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackDown1 = setup("player/boy_attack_down_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackDown1 = setup("player/boy_attack_down_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
+	}
 	
 	
 	public void update() {

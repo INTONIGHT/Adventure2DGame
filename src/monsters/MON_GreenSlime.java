@@ -6,9 +6,11 @@ import entity.Entity;
 import main.GamePanel;
 
 public class MON_GreenSlime extends Entity{
-
+	GamePanel gp;
+	
 	public MON_GreenSlime(GamePanel gp) {
 		super(gp);
+		this.gp = gp;
 		// TODO Auto-generated constructor stub
 		type = 2;
 		name = "Green Slime";
@@ -20,14 +22,14 @@ public class MON_GreenSlime extends Entity{
 	}
 	
 	public void getImage() {
-		up1 = setup("/monster/greenslime_down_1");
-		up2 = setup("/monster/greenslime_down_2");
-		down1 = setup("/monster/greenslime_down_1");
-		down2 = setup("/monster/greenslime_down_2");
-		left1 = setup("/monster/greenslime_down_1");
-		left2 = setup("/monster/greenslime_down_2");
-		right1 = setup("/monster/greenslime_down_1");
-		right2 = setup("/monster/greenslime_down_2");
+		up1 = setup("/monster/greenslime_down_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		up2 = setup("/monster/greenslime_down_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		down1 = setup("/monster/greenslime_down_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		down2 = setup("/monster/greenslime_down_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		left1 = setup("/monster/greenslime_down_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		left2 = setup("/monster/greenslime_down_2",gp.TILE_SIZE,gp.TILE_SIZE);
+		right1 = setup("/monster/greenslime_down_1",gp.TILE_SIZE,gp.TILE_SIZE);
+		right2 = setup("/monster/greenslime_down_2",gp.TILE_SIZE,gp.TILE_SIZE);
 	}
 	
 	public void setAction() {
