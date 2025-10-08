@@ -62,19 +62,22 @@ public class Player extends Entity{
 	}
 	
 	public void getPlayerAttackImage() {
-		attackUp1 = setup("player/boy_attack_up_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
-		attackUp2 = setup("player/boy_attack_up_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
-		attackLeft1 = setup("player/boy_attack_left_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
-		attackLeft2 = setup("player/boy_attack_left_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
-		attackRight1 = setup("player/boy_attack_right_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
-		attackRight2 = setup("player/boy_attack_right_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
-		attackDown1 = setup("player/boy_attack_down_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
-		attackDown1 = setup("player/boy_attack_down_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackUp1 = setup("/player/boy_attack_up_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackUp2 = setup("/player/boy_attack_up_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackLeft1 = setup("/player/boy_attack_left_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackLeft2 = setup("/player/boy_attack_left_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackRight1 = setup("/player/boy_attack_right_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackRight2 = setup("/player/boy_attack_right_2",gp.TILE_SIZE*2,gp.TILE_SIZE);
+		attackDown1 = setup("/player/boy_attack_down_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
+		attackDown1 = setup("/player/boy_attack_down_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
 	}
 	
 	
 	public void update() {
-		if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.spacePressed || keyH.fPressed) {
+		if(attacking) {
+			attackMonster();
+		}
+		else if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.spacePressed || keyH.fPressed) {
 			if(keyH.upPressed) {
 				direction = "up";
 				
@@ -153,7 +156,21 @@ public class Player extends Entity{
 		
 		
 	}
-	
+	public void attackMonster() {
+		spriteCounter ++;
+		if(spriteCounter <= 5) {
+			spriteNum = 1;
+		}
+		if(spriteCounter > 5 && spriteCounter <= 25) {
+			spriteNum = 2;
+		}
+		if(spriteCounter > 25) {
+			spriteNum = 1;
+			spriteCounter = 0;
+			attacking = false;
+		}
+		
+	}
 
 	public void draw(Graphics2D g2) {
 		//g2.setColor(Color.white);
@@ -161,37 +178,77 @@ public class Player extends Entity{
 		BufferedImage image = null;
 		switch(direction) {
 		case"up":
-			if(spriteNum == 1) {
-				image = up1;
-			}
-			if(spriteNum == 2) {
-				image = up2;
-			}
-			break;
-		case "down" :
-			if(spriteNum == 1) {
-				image = down1;
-			}
-			if(spriteNum == 2) {
-				image = down2;
+			if(!attacking) {
+				if(spriteNum == 1) {
+					image = up1;
+				}
+				if(spriteNum == 2) {
+					image = up2;
+				}
+			}else {
+				if(spriteNum == 1) {
+					image = attackUp1;
+				}
+				if(spriteNum == 2) {
+					image = attackUp2;
+				}
 			}
 			
 			break;
+		case "down" :
+			if(!attacking) {
+				if(spriteNum == 1) {
+					image = down1;
+				}
+				if(spriteNum == 2) {
+					image = down2;
+				}
+			}else {
+				if(spriteNum == 1) {
+					image = attackDown1;
+				}
+				if(spriteNum == 2) {
+					image = attackDown2;
+				}
+			}
+			
+			
+			break;
 		case "left":
-			if(spriteNum == 1) {
-				image = left1;
+			if(!attacking) {
+				if(spriteNum == 1) {
+					image = left1;
+				}
+				if(spriteNum == 2) {
+					image = left2;
+				}
+			}else {
+				if(spriteNum == 1) {
+					image = attackLeft1;
+				}
+				if(spriteNum == 2) {
+					image = attackLeft2;
+				}
 			}
-			if(spriteNum == 2) {
-				image = left2;
-			}
+			
 			break;
 		case "right":
-			if(spriteNum == 1) {
-				image = right1;
+			if(!attacking) {
+				if(spriteNum == 1) {
+					image = right1;
+				}
+				if(spriteNum == 2) {
+					image = right2;
+				}
+			}else {
+				if(spriteNum == 1) {
+					image = attackRight1;
+				}
+				if(spriteNum == 2) {
+					image = attackRight2;
+				}
 			}
-			if(spriteNum == 2) {
-				image = right2;
-			}
+			
 			break;
 		}
 		if(invincible) {
@@ -224,7 +281,7 @@ public class Player extends Entity{
 			gp.keyH.spacePressed = false;
 		} else {
 			if(gp.keyH.fPressed) {
-				
+				attacking = true;
 			}
 		}
 	}
