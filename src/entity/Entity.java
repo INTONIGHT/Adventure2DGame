@@ -42,6 +42,7 @@ public class Entity {
 	public boolean invincible = false;
 	public int invincibleCounter =0;
 	public int type;//0 = player 1 =npc 2 =monster
+	public boolean attacking = false;
 	
 	
 	public Entity(GamePanel gp) {

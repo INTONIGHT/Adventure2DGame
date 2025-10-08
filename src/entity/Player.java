@@ -35,6 +35,7 @@ public class Player extends Entity{
 		
 		setDefaultValues();
 		getPlayerImage();
+		getPlayerAttackImage();
 	}
 	
 	public void setDefaultValues() {
@@ -60,7 +61,7 @@ public class Player extends Entity{
 		
 	}
 	
-	public void getPLayerAttackImage() {
+	public void getPlayerAttackImage() {
 		attackUp1 = setup("player/boy_attack_up_1",gp.TILE_SIZE,gp.TILE_SIZE *2);
 		attackUp2 = setup("player/boy_attack_up_2",gp.TILE_SIZE,gp.TILE_SIZE *2);
 		attackLeft1 = setup("player/boy_attack_left_1",gp.TILE_SIZE*2,gp.TILE_SIZE);
@@ -73,7 +74,7 @@ public class Player extends Entity{
 	
 	
 	public void update() {
-		if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.spacePressed) {
+		if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.spacePressed || keyH.fPressed) {
 			if(keyH.upPressed) {
 				direction = "up";
 				
@@ -221,7 +222,10 @@ public class Player extends Entity{
 				gp.npc[npcIndex].speak();
 			}
 			gp.keyH.spacePressed = false;
-			
+		} else {
+			if(gp.keyH.fPressed) {
+				
+			}
 		}
 	}
 	
