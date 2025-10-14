@@ -33,6 +33,9 @@ public class Player extends Entity{
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		
+		attackArea.height = 36;
+		attackArea.width = 36;
+		
 		setDefaultValues();
 		getPlayerImage();
 		getPlayerAttackImage();
@@ -163,6 +166,30 @@ public class Player extends Entity{
 		}
 		if(spriteCounter > 5 && spriteCounter <= 25) {
 			spriteNum = 2;
+			//save the current world x etc 
+			int currentWorldX = worldX;
+			int currentWorldY = worldY;
+			int solidAreaWidth = solidArea.width;
+			int solidAreaHeight = solidArea.height;
+			//adjust player world x for the attack area
+			switch(direction) {
+			case "up": worldY -= attackArea.height; break;
+			case "down": worldY += attackArea.height; break;
+			case "left" : worldX -= attackArea.width; break;
+			case "right" : worldX += attackArea.width; break;
+			}
+			//attack area becomes solid area
+			solidArea.width = attackArea.width;
+			solidArea.height = attackArea.height;
+			//check monster collision with the updated values
+			int monsterIndex = gp.collisionDetector.checkEntity(this, gp.monsters);
+			damageMonster(monsterIndex);
+			//restore the values
+			worldX = currentWorldX;
+			worldY = currentWorldY;
+			solidArea.width = solidAreaWidth;
+			solidArea.height = solidAreaHeight;
+			
 		}
 		if(spriteCounter > 25) {
 			spriteNum = 1;
@@ -298,6 +325,13 @@ public class Player extends Entity{
 				
 			}
 			
+		}
+	}
+	public void damageMonster(int monsterIndex) {
+		if(monsterIndex != -1) {
+			System.out.println("Hit");
+		}else {
+			System.out.println("miss");
 		}
 	}
 }

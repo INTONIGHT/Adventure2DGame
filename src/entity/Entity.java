@@ -24,6 +24,7 @@ public class Entity {
 	//default solid area for entitties
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
 	public int actionLockCounter = 0;
+	public Rectangle attackArea =  new Rectangle(0,0,0,0);
 	
 	public boolean collisionOn = false;
 	GamePanel gp;
