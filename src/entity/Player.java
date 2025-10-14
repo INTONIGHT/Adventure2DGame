@@ -175,6 +175,8 @@ public class Player extends Entity{
 	public void draw(Graphics2D g2) {
 		//g2.setColor(Color.white);
 		//g2.fillRect(x, y, gp.TILE_SIZE, gp.TILE_SIZE);
+		int tempScreenX = SCREEN_X;
+		int tempScreenY = SCREEN_Y;
 		BufferedImage image = null;
 		switch(direction) {
 		case"up":
@@ -186,6 +188,7 @@ public class Player extends Entity{
 					image = up2;
 				}
 			}else {
+				tempScreenY = SCREEN_Y - gp.TILE_SIZE;
 				if(spriteNum == 1) {
 					image = attackUp1;
 				}
@@ -223,6 +226,7 @@ public class Player extends Entity{
 					image = left2;
 				}
 			}else {
+				tempScreenX = SCREEN_X - gp.TILE_SIZE;
 				if(spriteNum == 1) {
 					image = attackLeft1;
 				}
@@ -254,7 +258,7 @@ public class Player extends Entity{
 		if(invincible) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3F));
 		}
-		g2.drawImage(image, SCREEN_X, SCREEN_Y,null);
+		g2.drawImage(image, tempScreenX, tempScreenY,null);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
 		//this allows you to see the collision box
 		//g2.setColor(Color.red);
