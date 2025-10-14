@@ -283,7 +283,7 @@ public class Player extends Entity{
 			break;
 		}
 		if(invincible) {
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3F));
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4F));
 		}
 		g2.drawImage(image, tempScreenX, tempScreenY,null);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
@@ -329,9 +329,14 @@ public class Player extends Entity{
 	}
 	public void damageMonster(int monsterIndex) {
 		if(monsterIndex != -1) {
-			System.out.println("Hit");
-		}else {
-			System.out.println("miss");
+			if(!gp.monsters[monsterIndex].invincible) {
+				gp.monsters[monsterIndex].life -= 1;
+				gp.monsters[monsterIndex].invincible = true;
+				if(gp.monsters[monsterIndex].life <= 0 ) {
+					gp.monsters[monsterIndex] = null;
+				}
+			}
+		
 		}
 	}
 }

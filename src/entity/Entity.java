@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -110,7 +111,12 @@ public class Entity {
 				}
 				break;
 			}
+			if(invincible) {
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4F));
+			}
 			g2.drawImage(image, screenX, screenY, gp.TILE_SIZE,gp.TILE_SIZE,null);
+			//reset alpha
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
 		}
 	}
 	
@@ -178,7 +184,7 @@ public class Entity {
 		spriteCounter ++;
 		//gets called 60 times a second
 		//this rate will change the sprite every 10 frames
-		if(spriteCounter > 10) {//you can change this number if you feel it isnt smooth
+		if(spriteCounter > 12) {//you can change this number if you feel it isnt smooth
 			if(spriteNum == 1) {
 				spriteNum = 2;
 			}
@@ -186,6 +192,14 @@ public class Entity {
 				spriteNum =1;
 			}
 			spriteCounter  = 0;
+		}
+		//monsters
+		if(invincible) {
+			invincibleCounter ++;
+			if(invincibleCounter >40) {
+				invincible = false;
+				invincibleCounter = 0;
+			}
 		}
 	}
 	
