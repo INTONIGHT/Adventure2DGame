@@ -50,6 +50,8 @@ public class Entity {
 	public boolean dying = false;
 	public int dyingCounter = 0;
 	public int dyingLoopCount = 0;
+	public boolean hpBarOn = false;
+	public int hpBarCounter = 0;
 	
 	
 	public Entity(GamePanel gp) {
@@ -117,7 +119,8 @@ public class Entity {
 				break;
 			}
 			//drawing monster health bar
-			if(type == 2) {//entity is mosnter
+			//this is to conditionally display the hp bar
+			if(type == 2 && hpBarOn) {//entity is mosnter
 				double oneScale = (double) gp.TILE_SIZE /maxLife;
 				double hpBarValue = oneScale * life;
 				
@@ -127,12 +130,20 @@ public class Entity {
 				
 				g2.setColor(new Color(255,0,30));
 				g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+				hpBarCounter ++;
+				if(hpBarCounter > 600) {
+					hpBarCounter = 0;
+					hpBarOn = false;
+				}
+				
 			}
 			
 			
 			
 			
 			if(invincible) {
+				hpBarOn = true;
+				hpBarCounter = 0;
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4F));
 			}
 			if(dying) {
