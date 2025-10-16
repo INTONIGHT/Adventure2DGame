@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -115,6 +116,22 @@ public class Entity {
 				}
 				break;
 			}
+			//drawing monster health bar
+			if(type == 2) {//entity is mosnter
+				double oneScale = (double) gp.TILE_SIZE /maxLife;
+				double hpBarValue = oneScale * life;
+				
+				
+				g2.setColor(new Color(35,35,35));
+				g2.fillRect(screenX - 1, screenY - 16, gp.TILE_SIZE+2, 12);
+				
+				g2.setColor(new Color(255,0,30));
+				g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+			}
+			
+			
+			
+			
 			if(invincible) {
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4F));
 			}
