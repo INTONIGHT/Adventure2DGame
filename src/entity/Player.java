@@ -335,6 +335,7 @@ public class Player extends Entity{
 				gp.playSoundEffect(5);
 				gp.monsters[monsterIndex].life -= 1;
 				gp.monsters[monsterIndex].invincible = true;
+				gp.monsters[monsterIndex].damageReaction();
 				if(gp.monsters[monsterIndex].life <= 0 ) {
 					
 					gp.monsters[monsterIndex].dying = true;
