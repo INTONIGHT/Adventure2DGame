@@ -312,6 +312,7 @@ public class Player extends Entity{
 			gp.keyH.spacePressed = false;
 		} else {
 			if(gp.keyH.fPressed) {
+				//gp.playSoundEffect(7);
 				attacking = true;
 			}
 		}
@@ -320,6 +321,7 @@ public class Player extends Entity{
 	public void monsterInteraction(int monsterIndex) {
 		if(monsterIndex != -1) {
 			if(!invincible) {
+				gp.playSoundEffect(6);
 				life -=1;
 				invincible = true;
 				
@@ -330,6 +332,7 @@ public class Player extends Entity{
 	public void damageMonster(int monsterIndex) {
 		if(monsterIndex != -1) {
 			if(!gp.monsters[monsterIndex].invincible) {
+				gp.playSoundEffect(5);
 				gp.monsters[monsterIndex].life -= 1;
 				gp.monsters[monsterIndex].invincible = true;
 				if(gp.monsters[monsterIndex].life <= 0 ) {
