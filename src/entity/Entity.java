@@ -45,6 +45,10 @@ public class Entity {
 	public int invincibleCounter =0;
 	public int type;//0 = player 1 =npc 2 =monster
 	public boolean attacking = false;
+	public boolean alive = true;
+	public boolean dying = false;
+	public int dyingCounter = 0;
+	public int dyingLoopCount = 0;
 	
 	
 	public Entity(GamePanel gp) {
@@ -113,6 +117,9 @@ public class Entity {
 			}
 			if(invincible) {
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4F));
+			}
+			if(dying) {
+				dyingAnimation(g2);
 			}
 			g2.drawImage(image, screenX, screenY, gp.TILE_SIZE,gp.TILE_SIZE,null);
 			//reset alpha
@@ -210,6 +217,26 @@ public class Entity {
 		solidArea.height = height;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
+	}
+	
+	public void dyingAnimation(Graphics2D g2) {
+		dyingCounter++;
+		
+		if(dyingCounter <= 5) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0F));
+		}
+		if(dyingCounter > 5 && dyingCounter <= 10) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
+		}
+		if(dyingLoopCount > 8) {
+			dying = false;
+			alive = false;
+		}
+		if(dyingCounter >10) {
+			dyingLoopCount ++;
+			dyingCounter = 0;
+		}
+		
 	}
 	
 }

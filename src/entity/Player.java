@@ -333,7 +333,8 @@ public class Player extends Entity{
 				gp.monsters[monsterIndex].life -= 1;
 				gp.monsters[monsterIndex].invincible = true;
 				if(gp.monsters[monsterIndex].life <= 0 ) {
-					gp.monsters[monsterIndex] = null;
+					
+					gp.monsters[monsterIndex].dying = true;
 				}
 			}
 		
