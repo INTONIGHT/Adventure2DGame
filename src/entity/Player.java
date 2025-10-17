@@ -59,8 +59,8 @@ public class Player extends Entity{
 		coin = 0;
 		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
-		attack = getAttack();
-		defense = getDefense();
+		attack = getAttack(); //strength and weapon
+		defense = getDefense(); //dex and shield
 		
 	}
 	public int getAttack() {
