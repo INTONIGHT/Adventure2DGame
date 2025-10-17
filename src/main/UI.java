@@ -129,7 +129,7 @@ public class UI {
 	public void drawCharacterScreen() {
 		// TODO Auto-generated method stub
 		//frame
-		final int frameX = gp.TILE_SIZE * 2; 
+		final int frameX = gp.TILE_SIZE ; 
 		final int frameY = gp.TILE_SIZE;
 		final int frameWidth = gp.TILE_SIZE * 5;
 		final int frameHeight = gp.TILE_SIZE * 10;
