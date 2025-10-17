@@ -160,9 +160,9 @@ public class UI {
 		g2.drawString("Next Level", textX, textY);
 		textY += lineHeight;
 		g2.drawString("Coin", textX, textY);
-		textY += lineHeight;
+		textY += lineHeight + 20;
 		g2.drawString("Weapon", textX, textY);
-		textY += lineHeight;
+		textY += lineHeight + 15;
 		g2.drawString("Shield", textX, textY);
 		//values 
 		int tailX = (frameX + frameWidth - 30);
@@ -214,15 +214,10 @@ public class UI {
 		textY += lineHeight;
 		g2.drawString(value, textX, textY);
 		
-		value = String.valueOf(gp.player.currentWeapon.name);
-		textX = getXforAlignToRightText(value,tailX);
-		textY += lineHeight;
-		g2.drawString(value, textX, textY);
+		g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.TILE_SIZE, textY + 18 , null);
+		textY += gp.TILE_SIZE;
 		
-		value = String.valueOf(gp.player.currentShield.name);
-		textX = getXforAlignToRightText(value,tailX);
-		textY += lineHeight;
-		g2.drawString(value, textX, textY);
+		g2.drawImage(gp.player.currentShield.down1, tailX - gp.TILE_SIZE, textY + 18 ,null);
 	}
 
 	public void drawPlayerLife() {
