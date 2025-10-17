@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
 
@@ -58,8 +59,18 @@ public class Player extends Entity{
 		coin = 0;
 		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
+		attack = getAttack();
+		defense = getDefense();
 		
 	}
+	public int getAttack() {
+		return attack = strength * currentWeapon.attackValue;
+	}
+	
+	public int getDefense() {
+		return defense = dexterity * currentShield.defenseValue;
+	}
+	
 	public void getPlayerImage() {
 		up1 = setup("/player/boy_up_1",gp.TILE_SIZE,gp.TILE_SIZE);
 		up2 = setup("/player/boy_up_2",gp.TILE_SIZE,gp.TILE_SIZE);

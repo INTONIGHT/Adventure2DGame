@@ -55,7 +55,7 @@ public class Entity {
 	//player statistics
 	public int level;
 	public int strength, dexterity, attack, defense, exp, nextLevelExp, coin;
-	public Entity currentWeapon, currentShieldEntity;
+	public Entity currentWeapon, currentShield;
 	//item attributes
 	public int attackValue,defenseValue;
 	
