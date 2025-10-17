@@ -52,7 +52,12 @@ public class Entity {
 	public int dyingLoopCount = 0;
 	public boolean hpBarOn = false;
 	public int hpBarCounter = 0;
-	
+	//player statistics
+	public int level;
+	public int strength, dexterity, attack, defense, exp, nextLevelExp, coin;
+	public Entity currentWeapon, currentShieldEntity;
+	//item attributes
+	public int attackValue,defenseValue;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;

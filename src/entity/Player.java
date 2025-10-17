@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Sword_Normal;
 
 
 public class Player extends Entity{
@@ -50,6 +51,13 @@ public class Player extends Entity{
 		//player status
 		maxLife = 6;
 		life = maxLife;
+		level =1;
+		strength = dexterity = 1;
+		exp = 0;
+		nextLevelExp = 5;
+		coin = 0;
+		currentWeapon = new OBJ_Sword_Normal(gp);
+		currentShield = new OBJ_Shield_Wood(gp);
 		
 	}
 	public void getPlayerImage() {
