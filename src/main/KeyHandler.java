@@ -27,32 +27,38 @@ public class KeyHandler implements KeyListener{
 		if(gp.gameState == gp.titleState) {
 			titleState(code);
 		}
-		
 		//playState
 		else if(gp.gameState == gp.playState) {
 			playState(code);
 		}
 		//pauseState
 		else if(gp.gameState == gp.pauseState) {
-			if(code == KeyEvent.VK_P) {
-				gp.gameState = gp.playState;
-			}
+			pauseState(code);
 		}
-		
+		//dialogue state
 		else if(gp.gameState == gp.dialogueState) {
-			if(code == KeyEvent.VK_SPACE) {
-				gp.gameState = gp.playState;
-			}
+			dialogueState(code);
 		}
 		//character state
 		else if(gp.gameState == gp.characterState) {
-			if(code == KeyEvent.VK_SPACE) {
-				gp.gameState = gp.playState;
-			}
+			characterState(code);
 		}
-		
 	}
 	
+	public void characterState(int code) {
+		// TODO Auto-generated method stub
+		if(code == KeyEvent.VK_SPACE) {
+			gp.gameState = gp.playState;
+		}
+	}
+
+	public void dialogueState(int code) {
+		// TODO Auto-generated method stub
+		if(code == KeyEvent.VK_SPACE) {
+			gp.gameState = gp.playState;
+		}
+	}
+
 	public void titleState(int code) {
 		if(code == KeyEvent.VK_W) {
 			gp.ui.commandNum--;
@@ -125,6 +131,12 @@ public class KeyHandler implements KeyListener{
 			}else {
 				checkDrawTime = false;
 			}
+		}
+	}
+	
+	public void pauseState(int code) {
+		if(code == KeyEvent.VK_P) {
+			gp.gameState = gp.playState;
 		}
 	}
 
