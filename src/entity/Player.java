@@ -341,7 +341,11 @@ public class Player extends Entity{
 		if(monsterIndex != -1) {
 			if(!invincible) {
 				gp.playSoundEffect(6);
-				life -=1;
+				int damage = gp.monsters[monsterIndex].attack - defense;
+				if(damage < 0) {
+					damage = 0;
+				}
+				life -= damage;
 				invincible = true;
 				
 			}
@@ -352,7 +356,13 @@ public class Player extends Entity{
 		if(monsterIndex != -1) {
 			if(!gp.monsters[monsterIndex].invincible) {
 				gp.playSoundEffect(5);
-				gp.monsters[monsterIndex].life -= 1;
+				int damage = attack - gp.monsters[monsterIndex].defense;
+				if(damage < 0) {
+					damage = 0;
+				}
+				
+				
+				gp.monsters[monsterIndex].life -= damage;
 				gp.monsters[monsterIndex].invincible = true;
 				gp.monsters[monsterIndex].damageReaction();
 				if(gp.monsters[monsterIndex].life <= 0 ) {

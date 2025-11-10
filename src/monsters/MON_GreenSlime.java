@@ -16,6 +16,10 @@ public class MON_GreenSlime extends Entity{
 		name = "Green Slime";
 		speed = 1;
 		maxLife = 4;
+		attack = 5;
+		defense = 0;
+		
+		
 		life = maxLife;
 		setSolidArea(3,18,42,30);
 		getImage();
