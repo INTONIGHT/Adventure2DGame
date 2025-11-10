@@ -124,12 +124,23 @@ public class UI {
 		if(gp.gameState == gp.characterState) {
 			drawCharacterScreen();
 		}
+		//info state
+		if(gp.gameState == gp.infoState) {
+			drawInfoScreen();
+		}
 	}
 	
+	public void drawInfoScreen() {
+		// TODO Auto-generated method stub
+		this.currentDialogue = "P to pause the game,\n C to display character Stats \n Space to enter and exit dialogues \n F to attack Enter to interact with the healing pool";
+		drawDialogueScreen();
+		this.currentDialogue = "";
+	}
+
 	public void drawCharacterScreen() {
 		// TODO Auto-generated method stub
 		//frame
-		final int frameX = gp.TILE_SIZE ; 
+		final int frameX = gp.TILE_SIZE; 
 		final int frameY = gp.TILE_SIZE;
 		final int frameWidth = gp.TILE_SIZE * 5;
 		final int frameHeight = gp.TILE_SIZE * 10;
