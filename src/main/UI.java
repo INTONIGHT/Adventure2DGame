@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import entity.Entity;
 import object.OBJ_Heart;
@@ -18,8 +19,9 @@ public class UI {
 	Graphics2D g2;
 	//BufferedImage keyImage;
 	public boolean messageOn = false;
-	public String message = "";
-	int messageCounter = 0;
+
+	ArrayList<String> message = new ArrayList<>();
+	ArrayList<Integer> messageCounter = new ArrayList<>();
 	public boolean gameFinished;
 	double playTime;
 	//this means up to 2 decimal points
@@ -41,62 +43,13 @@ public class UI {
 		heart_blank = heart.image3;
 	}
 	
-	public void showMessage(String text) {
-		message = text;
-		messageOn = true;
+	public void addMessage(String text) {
+		message.add(text);
+		//add default value of message Counter
+		messageCounter.add(0);
 	}
-	public void oldDraw(Graphics2D g2) {
-//		if(gameFinished) {
-//			String text;
-//			int textLength;
-//			g2.setFont(arial_40);
-//			g2.setColor(Color.white);
-//			text = "You found the treasure!";
-//			//returns length of the text
-//			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-//			
-//			int x = gp.SCREEN_WIDTH/2 - textLength/2;
-//			int y = gp.SCREEN_HEIGHT/2 - (gp.TILE_SIZE*3);
-//			g2.drawString(text, x, y);
-//			
-//			text = "Your time was: " + dFormat.format(playTime) + "!";
-//			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-//			x = gp.SCREEN_WIDTH/2 - textLength/2;
-//			y = gp.SCREEN_HEIGHT/2 + (gp.TILE_SIZE*4);
-//			g2.drawString(text, x, y);
-//			
-//			g2.setFont(arial_80B);
-//			g2.setColor(Color.GREEN);
-//			text = "Congratulations!!!!!";
-//			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-//			x = gp.SCREEN_WIDTH/2 - textLength/2;
-//			y = gp.SCREEN_HEIGHT/2 + (gp.TILE_SIZE*2);
-//			g2.drawString(text, x, y);
-//			
-//			gp.gameThread = null;
-//			
-//		}else {
-//			//dont want to instantiate things as then it will be called every loop
-//			g2.setFont(arial_40);
-//			g2.setColor(Color.white);
-//			//g2.drawImage(keyImage,gp.TILE_SIZE/2,gp.TILE_SIZE/2,gp.TILE_SIZE,gp.TILE_SIZE,null);
-//			//time
-//			playTime += (double) 1/60;
-//			g2.drawString("Time: " + dFormat.format(playTime), gp.TILE_SIZE * 11, 65);
-//			g2.drawString("x " + gp.player.keysPossessed,74,65);
-//			//message
-//			if(messageOn) {
-//				//changing font size for this message
-//				g2.setFont(g2.getFont().deriveFont(30F));
-//				g2.drawString(message, gp.TILE_SIZE/2, gp.TILE_SIZE*5);
-//				messageCounter++;
-//				if(messageCounter > 120) {
-//					messageCounter = 0;
-//					messageOn = false;
-//				}
-//			}
-//		}
-	}
+	
+	
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
 		g2.setFont(arial_40);
@@ -105,6 +58,7 @@ public class UI {
 		if(gp.gameState == gp.playState) {
 			//draw playstate
 			drawPlayerLife();
+			drawMessage();
 		}
 		//pausestate
 		if(gp.gameState == gp.pauseState) {
@@ -130,6 +84,28 @@ public class UI {
 		}
 	}
 	
+	public void drawMessage() {
+		// TODO Auto-generated method stub
+		int messageX = gp.TILE_SIZE;
+		int messageY = gp.TILE_SIZE * 4;
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+		for(int i = 0; i<message.size();i++) {
+			if(message.get(i) != null) {
+				g2.setColor(Color.black);
+				g2.drawString(message.get(i), messageX + 2, messageY + 2);
+				g2.setColor(Color.white);
+				g2.drawString(message.get(i), messageX, messageY);
+				int counter = messageCounter.get(i) + 1; //equivalent to messagecounter++
+				messageCounter.set(i, counter);//set the counter to the array
+				messageY += 50;
+				if(messageCounter.get(i) > 180) { //after 3 seconds remove the message
+					message.remove(i);
+					messageCounter.remove(i);
+				}
+			}
+		}
+	}
+
 	public void drawInfoScreen() {
 		// TODO Auto-generated method stub
 		this.currentDialogue = "P to pause the game,\n C to display character Stats \n Space to enter and exit dialogues \n F to attack Enter to interact with the healing pool";

@@ -363,10 +363,11 @@ public class Player extends Entity{
 				
 				
 				gp.monsters[monsterIndex].life -= damage;
+				gp.ui.addMessage(damage + " damage!");
 				gp.monsters[monsterIndex].invincible = true;
 				gp.monsters[monsterIndex].damageReaction();
 				if(gp.monsters[monsterIndex].life <= 0 ) {
-					
+					gp.ui.addMessage("Killed the " + gp.monsters[monsterIndex].name + "!");
 					gp.monsters[monsterIndex].dying = true;
 				}
 			}
