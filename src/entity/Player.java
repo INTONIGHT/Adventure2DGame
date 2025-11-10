@@ -368,10 +368,30 @@ public class Player extends Entity{
 				gp.monsters[monsterIndex].damageReaction();
 				if(gp.monsters[monsterIndex].life <= 0 ) {
 					gp.ui.addMessage("Killed the " + gp.monsters[monsterIndex].name + "!");
+					gp.ui.addMessage("You gained:  " + gp.monsters[monsterIndex].exp + " experience!");
+					exp += gp.monsters[monsterIndex].exp;
+					checkLevelUp();
 					gp.monsters[monsterIndex].dying = true;
 				}
 			}
 		
+		}
+	}
+
+	public void checkLevelUp() {
+		// TODO Auto-generated method stub
+		if(exp >= nextLevelExp) {
+			level++;
+			nextLevelExp = nextLevelExp * 2;
+			maxLife += 2;
+			strength ++;
+			dexterity++;
+			attack = getAttack();
+			defense = getDefense();
+			gp.playSoundEffect(7);
+			gp.gameState = gp.dialogueState;
+			gp.ui.currentDialogue = "You are level " + level + " now!\n" + " you feel stronger";
+			
 		}
 	}
 }

@@ -119,6 +119,8 @@ public class EventHandler {
 			gp.gameState = gameState;
 			gp.ui.currentDialogue = "You drink the water.\n Your life has been recovered";
 			gp.player.life = gp.player.maxLife;
+			gp.assetLoader.setMonster(); //respawn Monsters
+			//gp.ui.currentDialogue = "The monsters have also returned.\n  Good luck";
 			
 		}
 		gp.keyH.enterPressed = false;

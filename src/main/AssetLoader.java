@@ -27,15 +27,17 @@ public class AssetLoader {
 	}
 	
 	public void setMonster() {
-		gp.monsters[0] = new MON_GreenSlime(gp);
-		gp.monsters[0].worldX = gp.TILE_SIZE * 23;
-		gp.monsters[0].worldY = gp.TILE_SIZE * 36;
 		
-		gp.monsters[1] = new MON_GreenSlime(gp);
-		gp.monsters[1].worldX = gp.TILE_SIZE * 23;
-		gp.monsters[1].worldY = gp.TILE_SIZE * 37;
-		
-		
+		int maxRange = 40;
+		int min = 10;
+		int range = maxRange - min  + 1;
+		for(int i =0; i< 5;i ++) {
+			gp.monsters[i] = new MON_GreenSlime(gp);
+			//i would need some logic to check the tile type its trying to put them on I dont feel like that right now
+			//this is the lazy way but it works for now :)
+			gp.monsters[i].worldX = gp.TILE_SIZE * 21 + i * gp.TILE_SIZE;
+			gp.monsters[i].worldY = gp.TILE_SIZE * 38 + i * gp.TILE_SIZE;
+		}
 		
 	}
 	
