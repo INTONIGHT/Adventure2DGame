@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -89,33 +90,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.stopMusic();
 		gameRunning = false;
 	}
-//	@Override
-//	public void run() {
-//		// TODO Auto-generated method stub
-//		double drawInterval = 1000000000 /FPS;
-//		double nextDrawTime = System.nanoTime() + drawInterval;
-//		while(gameThread != null) {
-//			//update 
-//			
-//			
-//			update();
-//			repaint();
-//			//draw screen
-//			//sleep method
-//			try {
-//				double remainingTime = nextDrawTime - System.nanoTime();
-//				remainingTime = remainingTime/1000000;//convert to milliseconds
-//				if( remainingTime < 0) {
-//					remainingTime = 0;
-//				}
-//				Thread.sleep((long) remainingTime);
-//				nextDrawTime += drawInterval;
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+
 	
 	@Override
 	public void run() {
@@ -186,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D)g;//has some inbuilt functions
 		//DEBUG
 		long drawStart =0;
-		if(keyH.checkDrawTime) {
+		if(keyH.showDebugText) {
 			drawStart = System.nanoTime();
 		}
 		
@@ -242,13 +217,25 @@ public class GamePanel extends JPanel implements Runnable{
 		//tile
 		
 		//DEBUG
-		if(keyH.checkDrawTime) {
+		if(keyH.showDebugText) {
 			long drawEnd = System.nanoTime();
 			long passed = drawEnd - drawStart;
 			double milliseconds = (double) passed/1000000;
+			g2.setFont(new Font("Arial",Font.PLAIN,20));
+			int x = 10;
+			int y = 400;
+			int lineHeight = 20;
+			g2.drawString("WorldX: " + player.worldX , x, y);
+			y+=lineHeight;
+			g2.drawString("WorldY: " + player.worldY,x,y);
+			y+=lineHeight;
+			g2.drawString("Col: " + (player.worldX + player.solidArea.x)/TILE_SIZE,x,y);
+			y+=lineHeight;
+			g2.drawString("Row: " + (player.worldY + player.solidArea.y)/TILE_SIZE,x,y);
+			y+=lineHeight;
 			g2.setColor(Color.white);
-			g2.drawString("Draw Time milliseconds : " + milliseconds, 10, 400);
-			System.out.println("milliseconds passed: " + milliseconds);
+			g2.drawString("Draw Time milliseconds : " + milliseconds, x, y);
+			//System.out.println("milliseconds passed: " + milliseconds);
 		}
 		
 		g2.dispose();

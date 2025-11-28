@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 	
 	public boolean upPressed,downPressed,leftPressed,rightPressed,spacePressed, enterPressed, fPressed, iPressed;
-	public boolean checkDrawTime;
+	public boolean showDebugText;
 	GamePanel gp;
 	
 	public KeyHandler(GamePanel gp) {
@@ -141,11 +141,16 @@ public class KeyHandler implements KeyListener{
 		}
 		//DEBUG
 		if(code == KeyEvent.VK_T) {
-			if(!checkDrawTime) {
-				checkDrawTime = true;
+			if(!showDebugText) {
+				showDebugText = true;
 			}else {
-				checkDrawTime = false;
+				showDebugText = false;
 			}
+		}
+		//refresh
+		//This is useful if you want to make changes to the map and then see them without needing to constantly refresh and reload the game
+		if(code == KeyEvent.VK_R) {
+			gp.tileM.loadMap("/maps/worldv3.txt");
 		}
 	}
 	
