@@ -61,6 +61,28 @@ public class KeyHandler implements KeyListener{
 		if(code == KeyEvent.VK_SPACE) {
 			gp.gameState = gp.playState;
 		}
+		if(code == KeyEvent.VK_W) {
+			if(gp.ui.slotRow != 0) {
+				gp.ui.slotRow --;
+				gp.playSoundEffect(8);
+			}
+			
+		}
+		if(code == KeyEvent.VK_A) {
+			if(gp.ui.slotCol !=0 ) {
+				gp.ui.slotCol--;
+				gp.playSoundEffect(8);
+			}
+			
+		}
+		if(code == KeyEvent.VK_S) {
+			gp.ui.slotRow++;
+			gp.playSoundEffect(8);
+		}
+		if(code == KeyEvent.VK_D) {
+			gp.ui.slotCol++;
+			gp.playSoundEffect(8);
+		}
 	}
 
 	public void dialogueState(int code) {
