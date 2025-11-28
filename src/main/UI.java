@@ -29,6 +29,8 @@ public class UI {
 	public String currentDialogue = "";
 	public int commandNum = 0;
 	public BufferedImage heart_full,heart_half,heart_blank;
+	public int slotCol = 0;
+	public int slotRow = 0;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -77,6 +79,7 @@ public class UI {
 		//character state
 		if(gp.gameState == gp.characterState) {
 			drawCharacterScreen();
+			drawInventory();
 		}
 		//info state
 		if(gp.gameState == gp.infoState) {
@@ -205,6 +208,29 @@ public class UI {
 		textY += gp.TILE_SIZE;
 		
 		g2.drawImage(gp.player.currentShield.down1, tailX - gp.TILE_SIZE, textY + 18 ,null);
+	}
+	public void drawInventory() {
+		//frame
+		int frameX = gp.TILE_SIZE * 9;
+		int frameY = gp.TILE_SIZE;
+		int frameWidth = gp.TILE_SIZE * 6;
+		int frameHeight = gp.TILE_SIZE*5;
+		drawSubWindow(frameX,frameY,frameWidth,frameHeight);
+		//slot
+		final int slotXStart = frameX + 20;
+		final int slotYStart = frameY + 20;
+		int slotX = slotXStart;
+		int slotY = slotYStart;
+		
+		//draw a cursor to move and select items
+		int cursorX = slotXStart + (gp.TILE_SIZE * slotCol);
+		int cursorY = slotYStart + (gp.TILE_SIZE * slotRow);
+		int cursorWidth = gp.TILE_SIZE;
+		int cursorHeight = gp.TILE_SIZE;
+		//handling the actual drawing of the cursor
+		g2.setColor(Color.white);
+		g2.setStroke( new BasicStroke(3));
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 
 	public void drawPlayerLife() {
