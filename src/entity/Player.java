@@ -5,12 +5,11 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
-
-
+import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -20,6 +19,8 @@ public class Player extends Entity{
 	public KeyHandler keyH;
 	public final int SCREEN_X;
 	public final int SCREEN_Y;
+	public ArrayList<Entity> inventory = new ArrayList<>();
+	public final int MAX_INVENTORY_SIZE = 20;
 	
 	//public int keysPossessed = 0;
 	//where we draw the player on screen
@@ -41,6 +42,7 @@ public class Player extends Entity{
 		setDefaultValues();
 		getPlayerImage();
 		getPlayerAttackImage();
+		setItems();
 	}
 	
 	public void setDefaultValues() {
@@ -71,6 +73,12 @@ public class Player extends Entity{
 		return defense = dexterity * currentShield.defenseValue;
 	}
 	
+	public void setItems() {
+		inventory.add(currentWeapon);
+		inventory.add(currentShield);
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+	}
 	public void getPlayerImage() {
 		up1 = setup("/player/boy_up_1",gp.TILE_SIZE,gp.TILE_SIZE);
 		up2 = setup("/player/boy_up_2",gp.TILE_SIZE,gp.TILE_SIZE);

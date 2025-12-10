@@ -221,6 +221,17 @@ public class UI {
 		final int slotYStart = frameY + 20;
 		int slotX = slotXStart;
 		int slotY = slotYStart;
+		//draw the items in the inventory
+		for(int i = 0; i<gp.player.inventory.size();i++) {
+			g2.drawImage(gp.player.inventory.get(i).down1,slotX,slotY,null);
+			slotX += gp.TILE_SIZE;
+			//this is clunmky but i dont want to have to try to fix it right now
+			if(i ==4 || i ==9 || i == 14 ) {
+				slotX = slotXStart;
+				slotY += gp.TILE_SIZE;
+				
+			}
+		}
 		
 		//draw a cursor to move and select items
 		int cursorX = slotXStart + (gp.TILE_SIZE * slotCol);

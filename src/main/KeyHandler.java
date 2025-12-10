@@ -69,19 +69,25 @@ public class KeyHandler implements KeyListener{
 			
 		}
 		if(code == KeyEvent.VK_A) {
-			if(gp.ui.slotCol !=0 ) {
+			if(gp.ui.slotCol != 0 ) {
 				gp.ui.slotCol--;
 				gp.playSoundEffect(8);
 			}
 			
 		}
 		if(code == KeyEvent.VK_S) {
-			gp.ui.slotRow++;
-			gp.playSoundEffect(8);
+			if(gp.ui.slotRow != 3) {
+				gp.ui.slotRow++;
+				gp.playSoundEffect(8);
+			}
+			
 		}
 		if(code == KeyEvent.VK_D) {
-			gp.ui.slotCol++;
-			gp.playSoundEffect(8);
+			if(gp.ui.slotCol != 4) {
+				gp.ui.slotCol++;
+				gp.playSoundEffect(8);
+			}
+			
 		}
 	}
 
