@@ -78,6 +78,24 @@ public class Player extends Entity{
 		inventory.add(currentShield);
 		inventory.add(new OBJ_Key(gp));
 		inventory.add(new OBJ_Key(gp));
+		//testing the limit of the inventory
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		inventory.add(new OBJ_Key(gp));
+		
 	}
 	public void getPlayerImage() {
 		up1 = setup("/player/boy_up_1",gp.TILE_SIZE,gp.TILE_SIZE);
